@@ -57,4 +57,13 @@ interface KiranaApiService {
     suspend fun getAllSesi(
         @Header("Authorization") token: String
     ): SesiResponse
+
+    @FormUrlEncoded
+    @POST("sesi/update.php")
+    suspend fun updateSesi(
+        @Header("Authorization") token: String,
+        @Field("id_sesi") id: String,
+        @Field("jam_operasional") jam: String,
+        @Field("nama_instruktur") instruktur: String
+    ): BasicResponse
 }
