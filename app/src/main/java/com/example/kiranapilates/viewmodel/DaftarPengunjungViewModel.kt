@@ -1,0 +1,34 @@
+package com.example.kiranapilates.viewmodel
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.kiranapilates.modeldata.Pengunjung
+import com.example.kiranapilates.repositori.PengunjungRepository
+import kotlinx.coroutines.launch
+
+sealed class DaftarUiState {
+    data class Success(val pengunjung: List<Pengunjung>) : DaftarUiState()
+    object Error : DaftarUiState()
+    object Loading : DaftarUiState()
+}
+
+class DaftarPengunjungViewModel(private val repository: PengunjungRepository) : ViewModel() {
+    var daftarUiState: DaftarUiState by mutableStateOf(DaftarUiState.Loading)
+        private set
+
+    // Fungsi ambil data (panggil ini nanti di init)
+    fun getListPengunjung(token: String) {
+        viewModelScope.launch {
+            daftarUiState = DaftarUiState.Loading
+            daftarUiState = try {
+                val result = repository.getPengunjung(token)
+                DaftarUiState.Success(result.data)
+            } catch (e: Exception) {
+                DaftarUiState.Error
+            }
+        }
+    }
+}
