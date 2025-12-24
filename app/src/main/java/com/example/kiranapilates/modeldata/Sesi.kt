@@ -2,17 +2,15 @@ package com.example.kiranapilates.modeldata
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Pengunjung(
-    val id_pengunjung: String,
-    val nama_lengkap: String,
-    val no_hp: String,
-    val tipe_pengunjung: String,
-    val kuota_sisa: String,
-    val total_kunjungan: String
+data class Sesi(
+    val id_sesi: String,
+    val nama_sesi: String,
+    val jam_operasional: String,
+    val nama_instruktur: String
 )
 
 @Serializable
-data class PengunjungResponse(
+data class SesiResponse(
     val status: String,
-    val data: List<Pengunjung>
+    val data: List<Sesi>
 )
