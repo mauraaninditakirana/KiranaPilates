@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
-// 1. Interface Container (Kontrak)
+// 1. Interface Container
 interface ContainerApp {
     val pengunjungRepository: PengunjungRepository
 }
@@ -19,7 +19,6 @@ class DefaultContainerApp : ContainerApp {
 
     private val baseUrl = "http://10.0.2.2/kirana_pilates_api/"
 
-    // Logging agar bisa lihat error API di Logcat
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -49,13 +48,12 @@ class DefaultContainerApp : ContainerApp {
     }
 }
 
-// 3. Class Application
+// 3. Class Application (Jantung Aplikasi - Disatukan di sini)
 class KiranaPilatesApp : Application() {
     lateinit var container: ContainerApp
 
     override fun onCreate() {
         super.onCreate()
-        // Inisialisasi container saat aplikasi jalan
         this.container = DefaultContainerApp()
     }
 }
