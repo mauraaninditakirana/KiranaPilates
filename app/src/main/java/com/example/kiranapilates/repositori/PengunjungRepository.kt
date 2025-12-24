@@ -26,7 +26,7 @@ interface PengunjungRepository {
         }
 
         override suspend fun getPengunjungById(token: String, id: String): Pengunjung {
-            val response = kiranaApiService.getAllPengunjung(token) // Pakai API yang sudah ada
+            val response = kiranaApiService.getAllPengunjung(token)
             return response.data.find { it.id_pengunjung == id }
                 ?: throw Exception("Pengunjung tidak ditemukan")
         }
