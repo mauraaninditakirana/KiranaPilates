@@ -52,4 +52,9 @@ interface KiranaApiService {
         @Field("id_pengunjung") id: String
     ): BasicResponse
 
+    // --- 3. SESI (Halaman 7 - 8) ---
+    @GET("sesi/read.php")
+    suspend fun getAllSesi(
+        @Header("Authorization") token: String
+    ): SesiResponse
 }
