@@ -4,7 +4,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.kiranapilates.modeldata.Pengunjung
 import com.example.kiranapilates.repositori.PengunjungRepository
 
 data class TambahUiState(
