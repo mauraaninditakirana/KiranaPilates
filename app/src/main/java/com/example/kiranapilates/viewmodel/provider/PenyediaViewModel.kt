@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.kiranapilates.KiranaPilatesApp
+import com.example.kiranapilates.repositori.KiranaPilatesApp
 import com.example.kiranapilates.viewmodel.DaftarPengunjungViewModel
 
 object PenyediaViewModel {
