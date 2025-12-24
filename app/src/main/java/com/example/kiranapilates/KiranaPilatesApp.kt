@@ -1,14 +1,15 @@
 package com.example.kiranapilates
 
 import android.app.Application
-import com.example.kiranapilates.repositori.AppContainer
-import com.example.kiranapilates.repositori.KiranaContainer
+import com.example.kiranapilates.repositori.ContainerApp
+import com.example.kiranapilates.repositori.DefaultContainerApp
 
 class KiranaPilatesApp : Application() {
-    lateinit var container: AppContainer
+    // Variabel ini yang dipanggil di PenyediaViewModel
+    lateinit var container: ContainerApp
 
     override fun onCreate() {
         super.onCreate()
-        container = KiranaContainer()
+        container = DefaultContainerApp()
     }
 }
