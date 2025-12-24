@@ -44,4 +44,12 @@ interface KiranaApiService {
         @Field("no_hp") hp: String,
         @Field("tipe_pengunjung") tipe: String
     ): BasicResponse
+
+    @FormUrlEncoded
+    @POST("pengunjung/delete.php")
+    suspend fun deletePengunjung(
+        @Header("Authorization") token: String,
+        @Field("id_pengunjung") id: String
+    ): BasicResponse
+
 }
