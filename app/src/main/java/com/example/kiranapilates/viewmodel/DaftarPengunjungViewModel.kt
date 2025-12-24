@@ -1,5 +1,4 @@
 package com.example.kiranapilates.viewmodel
-
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -19,15 +18,14 @@ class DaftarPengunjungViewModel(private val repository: PengunjungRepository) : 
     var daftarUiState: DaftarUiState by mutableStateOf(DaftarUiState.Loading)
         private set
 
-
     fun getListPengunjung(token: String) {
         viewModelScope.launch {
             daftarUiState = DaftarUiState.Loading
-            daftarUiState = try {
-                val result = repository.getPengunjung(token)
-                DaftarUiState.Success(result.data)
+            try {
+                val response = repository.getPengunjung(token)
+                daftarUiState = DaftarUiState.Success(response.data)
             } catch (e: Exception) {
-                DaftarUiState.Error
+                daftarUiState = DaftarUiState.Error
             }
         }
     }
