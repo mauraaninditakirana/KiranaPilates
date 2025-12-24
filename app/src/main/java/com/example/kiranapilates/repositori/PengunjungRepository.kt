@@ -9,6 +9,7 @@ interface PengunjungRepository {
     suspend fun getPengunjung(token: String): PengunjungResponse
 
     suspend fun insertPengunjung(token: String, pengunjung: Pengunjung): BasicResponse
+    suspend fun getPengunjungById(token: String, id: String): Pengunjung
 }
 
     class NetworkPengunjungRepository(private val kiranaApiService: KiranaApiService) : PengunjungRepository {
@@ -24,4 +25,9 @@ interface PengunjungRepository {
             )
         }
 
+        override suspend fun getPengunjungById(token: String, id: String): Pengunjung {
+            val response = kiranaApiService.getAllPengunjung(token) // Pakai API yang sudah ada
+            return response.data.find { it.id_pengunjung == id }
+                ?: throw Exception("Pengunjung tidak ditemukan")
+        }
 }
