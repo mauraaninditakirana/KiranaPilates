@@ -6,7 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.kiranapilates.uicontroller.route.DestinasiDaftarPengunjung
+import com.example.kiranapilates.uicontroller.route.DestinasiTambahPengunjung
 import com.example.kiranapilates.view.HalamanDaftarPengunjung
+import com.example.kiranapilates.view.HalamanTambahPengunjung
 import com.example.kiranapilates.viewmodel.provider.PenyediaViewModel
 
 @Composable
@@ -26,6 +28,12 @@ fun PetaNavigasi() {
                 onNavigateToDetail = { id ->
 
                 }
+            )
+        }
+        composable(route = DestinasiTambahPengunjung.route) {
+            HalamanTambahPengunjung(
+                viewModel = viewModel(factory = PenyediaViewModel.Factory),
+                onNavigateBack = { navController.popBackStack() }
             )
         }
     }
