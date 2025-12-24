@@ -1,5 +1,4 @@
 package com.example.kiranapilates.modeldata
-
 import kotlinx.serialization.Serializable
 
 @Serializable
