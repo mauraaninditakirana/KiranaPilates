@@ -35,4 +35,13 @@ interface KiranaApiService {
         @Field("tipe_pengunjung") tipe: String
     ): BasicResponse
 
+    @FormUrlEncoded
+    @PUT("pengunjung/update.php")
+    suspend fun updatePengunjung(
+        @Header("Authorization") token: String,
+        @Field("id_pengunjung") id: String,
+        @Field("nama_lengkap") nama: String,
+        @Field("no_hp") hp: String,
+        @Field("tipe_pengunjung") tipe: String
+    ): BasicResponse
 }
