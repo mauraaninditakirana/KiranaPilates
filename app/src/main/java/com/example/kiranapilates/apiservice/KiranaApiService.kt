@@ -66,4 +66,13 @@ interface KiranaApiService {
         @Field("jam_operasional") jam: String,
         @Field("nama_instruktur") instruktur: String
     ): BasicResponse
+
+    // --- 4. CHECK-IN (Halaman 9 - 11) ---
+    @FormUrlEncoded
+    @POST("checkin/create.php") 
+    suspend fun submitCheckin(
+        @Header("Authorization") token: String,
+        @Field("id_pengunjung") idPengunjung: String,
+        @Field("id_sesi") idSesi: String
+    ): BasicResponse
 }
