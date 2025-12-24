@@ -19,7 +19,7 @@ class DaftarPengunjungViewModel(private val repository: PengunjungRepository) : 
     var daftarUiState: DaftarUiState by mutableStateOf(DaftarUiState.Loading)
         private set
 
-    // Fungsi ambil data (panggil ini nanti di init)
+
     fun getListPengunjung(token: String) {
         viewModelScope.launch {
             daftarUiState = DaftarUiState.Loading
