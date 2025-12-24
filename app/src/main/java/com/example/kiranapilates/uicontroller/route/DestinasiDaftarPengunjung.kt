@@ -4,7 +4,3 @@ object DestinasiDaftarPengunjung : DestinasiNavigasi {
     override val route = "daftar_pengunjung"
     override val titleRes = "Daftar Pengunjung"
 }
-interface DestinasiNavigasi {
-    val route: String
-    val titleRes: String
-}
