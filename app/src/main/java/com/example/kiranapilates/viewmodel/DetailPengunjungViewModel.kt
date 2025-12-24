@@ -9,8 +9,6 @@ class DetailPengunjungViewModel(
     savedStateHandle: SavedStateHandle,
     private val repository: PengunjungRepository
 ) : ViewModel() {
-    // ambil ID yang dikirim lewat rute navigasi
+    // Mengambil ID dari navigasi
     private val idPengunjung: String = checkNotNull(savedStateHandle["id_pengunjung"])
-
-
 }
