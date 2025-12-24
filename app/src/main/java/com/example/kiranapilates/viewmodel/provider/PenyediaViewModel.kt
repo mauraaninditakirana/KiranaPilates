@@ -2,11 +2,13 @@ package com.example.kiranapilates.viewmodel.provider
 
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.kiranapilates.repositori.KiranaPilatesApp
 import com.example.kiranapilates.viewmodel.DaftarPengunjungViewModel
+import com.example.kiranapilates.viewmodel.DetailPengunjungViewModel
 import com.example.kiranapilates.viewmodel.TambahPengunjungViewModel
 
 object PenyediaViewModel {
@@ -18,6 +20,9 @@ object PenyediaViewModel {
         initializer {
             TambahPengunjungViewModel(kiranaPilatesApp().container.pengunjungRepository)
         }
+        initializer {
+            DetailPengunjungViewModel(
+                this.createSavedStateHandle(), kiranaPilatesApp().container.pengunjungRepository) }
     }
 }
 
