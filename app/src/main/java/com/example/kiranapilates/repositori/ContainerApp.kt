@@ -48,7 +48,7 @@ class DefaultContainerApp : ContainerApp {
         NetworkPengunjungRepository(retrofitService)
     }
     override val sesiRepository: SesiRepository by lazy {
-        NetworkSesiRepository(retrofitService) // TAMBAH INI
+        NetworkSesiRepository(retrofitService)
     }
 }
 
