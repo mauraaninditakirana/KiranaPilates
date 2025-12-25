@@ -7,5 +7,12 @@
     <string name="empty_data">Tidak ada data pengunjung</string>
     <string name="error_data">Gagal mengambil data</string>
     <string name="type_label">Tipe: %1$s</string>
+    <string name="title_tambah_pengunjung">Tambah Pengunjung</string>
+    <string name="label_nama_lengkap">Nama Lengkap</string>
+    <string name="label_nohp">Nomor HP</string>
+    <string name="label_tipe">Tipe Pengunjung</string>
+    <string name="btn_submit">Submit</string>
+    <string name="msg_success">Pengunjung berhasil ditambahkan!</string>
+    <string name="msg_error">Gagal menambah data, coba lagi.</string>
 
 </resources>
