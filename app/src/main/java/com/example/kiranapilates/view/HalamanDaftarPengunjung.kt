@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,6 +26,9 @@ fun HalamanDaftarPengunjung(
     onTambahClick: () -> Unit,
     onBack: () -> Unit
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.getListPengunjung("ISI_TOKEN_ADMIN_MU")
+    }
     // Ambil nilai dari dimens.xml
     val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
     val paddingSmall = dimensionResource(id = R.dimen.padding_small)
