@@ -10,6 +10,7 @@ import com.example.kiranapilates.repositori.KiranaPilatesApp
 import com.example.kiranapilates.viewmodel.DaftarPengunjungViewModel
 import com.example.kiranapilates.viewmodel.DetailPengunjungViewModel
 import com.example.kiranapilates.viewmodel.EditPengunjungViewModel
+import com.example.kiranapilates.viewmodel.EditSesiViewModel
 import com.example.kiranapilates.viewmodel.SesiViewModel
 import com.example.kiranapilates.viewmodel.TambahPengunjungViewModel
 
@@ -29,6 +30,12 @@ object PenyediaViewModel {
         }
         initializer {
             SesiViewModel(kiranaPilatesApp().container.sesiRepository)
+        }
+        initializer {
+            EditSesiViewModel(
+                this.createSavedStateHandle(),
+                kiranaPilatesApp().container.sesiRepository
+            )
         }
     }
 }
