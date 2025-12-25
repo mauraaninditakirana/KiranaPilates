@@ -7,12 +7,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.kiranapilates.uicontroller.route.DestinasiCheckin
 import com.example.kiranapilates.uicontroller.route.DestinasiDaftarPengunjung
 import com.example.kiranapilates.uicontroller.route.DestinasiDetailPengunjung
 import com.example.kiranapilates.uicontroller.route.DestinasiEditPengunjung
 import com.example.kiranapilates.uicontroller.route.DestinasiSesi
 import com.example.kiranapilates.uicontroller.route.DestinasiSesiUpdate
 import com.example.kiranapilates.uicontroller.route.DestinasiTambahPengunjung
+import com.example.kiranapilates.view.HalamanCheckin
 import com.example.kiranapilates.view.HalamanDaftarPengunjung
 import com.example.kiranapilates.view.HalamanDetailPengunjung
 import com.example.kiranapilates.view.HalamanEditPengunjung
@@ -78,6 +80,14 @@ fun PetaNavigasi() {
             HalamanSesiUpdate(
                 viewModel = viewModel(factory = PenyediaViewModel.Factory),
                 onNavigateBack = { navController.popBackStack() }
+            )
+        }
+        composable(route = DestinasiCheckin.route) {
+            HalamanCheckin(
+                viewModel = viewModel(factory = PenyediaViewModel.Factory),
+                onSesiClick = { idSesi -> /* Navigasi ke Riwayat */ },
+                onTambahClick = { navController.navigate(DestinasiCheckin.route) },
+                onBack = { navController.popBackStack() }
             )
         }
     }
