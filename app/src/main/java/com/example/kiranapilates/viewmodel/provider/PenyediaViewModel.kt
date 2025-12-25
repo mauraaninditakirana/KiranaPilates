@@ -39,7 +39,10 @@ object PenyediaViewModel {
             )
         }
         initializer {
-            CheckinViewModel()
+            CheckinViewModel(
+                kiranaPilatesApp().container.checkinRepository,
+                kiranaPilatesApp().container.pengunjungRepository
+            )
         }
     }
 }

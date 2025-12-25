@@ -20,7 +20,7 @@ interface ContainerApp {
 // 2. Implementasi Container
 class DefaultContainerApp : ContainerApp {
 
-    private val baseUrl = "http://10.0.2.2/kirana_pilates_api/"
+    private val baseUrl = "http://192.168.100.205/kirana_pilates_api/"
 
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY

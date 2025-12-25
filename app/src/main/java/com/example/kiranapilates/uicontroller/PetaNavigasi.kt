@@ -85,7 +85,7 @@ fun PetaNavigasi() {
         composable(route = DestinasiCheckin.route) {
             HalamanCheckin(
                 viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onSesiClick = { idSesi -> /* Navigasi ke Riwayat */ },
+                onSesiClick = { idSesi, tanggalSesi -> navController.navigate("riwayat_checkin/$idSesi/$tanggalSesi") },
                 onTambahClick = { navController.navigate(DestinasiCheckin.route) },
                 onBack = { navController.popBackStack() }
             )
