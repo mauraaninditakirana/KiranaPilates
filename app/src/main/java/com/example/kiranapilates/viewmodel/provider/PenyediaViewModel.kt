@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.kiranapilates.repositori.KiranaPilatesApp
+import com.example.kiranapilates.viewmodel.CheckinViewModel
 import com.example.kiranapilates.viewmodel.DaftarPengunjungViewModel
 import com.example.kiranapilates.viewmodel.DetailPengunjungViewModel
 import com.example.kiranapilates.viewmodel.EditPengunjungViewModel
@@ -36,6 +37,9 @@ object PenyediaViewModel {
                 this.createSavedStateHandle(),
                 kiranaPilatesApp().container.sesiRepository
             )
+        }
+        initializer {
+            CheckinViewModel()
         }
     }
 }
