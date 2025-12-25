@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">KiranaPilates</string>
+    <string name="title_daftar_pengunjung">Daftar Pengunjung</string>
+    <string name="search_placeholder">Cari Nama Pengunjung...</string>
+    <string name="back_content_desc">Kembali</string>
+    <string name="add_content_desc">Tambah</string>
+    <string name="empty_data">Tidak ada data pengunjung</string>
+    <string name="error_data">Gagal mengambil data</string>
+    <string name="type_label">Tipe: %1$s</string>
+
 </resources>

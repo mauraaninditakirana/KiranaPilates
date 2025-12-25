@@ -1,7 +1,6 @@
 package com.example.kiranapilates.uicontroller.route
 
-
-object DestinasiCheckin : DestinasiNavigasi {
+object DestinasiCheckinForm : DestinasiNavigasi {
     override val route = "tambah_checkin"
-    override val titleRes = "Check-in"
+    override val titleRes = "Form Check-in"
 }
