@@ -23,10 +23,13 @@ fun HalamanTambahPengunjung(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.title_tambah_pengunjung)) },
+                title = { Text(stringResource(R.string.title_tambah_pengunjung)) }, // Pakai string milikmu
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = null)
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back_content_desc) // Ini yang tadi salah
+                        )
                     }
                 }
             )
@@ -43,27 +46,30 @@ fun HalamanTambahPengunjung(
                 value = viewModel.nama_lengkap,
                 onValueChange = { viewModel.updateNama(it) },
                 label = { Text(stringResource(R.string.label_nama_lengkap)) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true
             )
 
             Spacer(modifier = Modifier.height(paddingMedium))
 
-            // Field No HP
+            // Field Nomor HP
             OutlinedTextField(
                 value = viewModel.nohp,
                 onValueChange = { viewModel.updateNoHp(it) },
                 label = { Text(stringResource(R.string.label_nohp)) },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true
             )
 
             Spacer(modifier = Modifier.height(paddingMedium))
 
-            // Dropdown/Radio Tipe Pengunjung (Sederhana dulu)
-            Text(stringResource(R.string.label_tipe))
-            // ... (Bisa ditambah RadioButton di sini)
+            // Label Tipe
+            Text(text = stringResource(R.string.label_tipe), style = MaterialTheme.typography.bodyLarge)
 
+            // Spacer untuk mendorong button ke bawah
             Spacer(modifier = Modifier.weight(1f))
 
+            // Button Submit
             Button(
                 onClick = {
                     viewModel.simpanPengunjung()
@@ -71,18 +77,20 @@ fun HalamanTambahPengunjung(
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(stringResource(R.string.btn_submit))
+                Text(text = stringResource(R.string.btn_submit))
             }
 
-            // POP-UP BERHASIL
+            // POP-UP NOTIFIKASI BERHASIL
             if (showDialog) {
                 AlertDialog(
                     onDismissRequest = { showDialog = false },
                     confirmButton = {
                         TextButton(onClick = {
                             showDialog = false
-                            onNavigateBack() // Kembali ke Daftar
-                        }) { Text("OK") }
+                            onNavigateBack() // Kembali ke Daftar Pengunjung
+                        }) {
+                            Text("OK")
+                        }
                     },
                     title = { Text("Notifikasi") },
                     text = { Text(stringResource(R.string.msg_success)) }
