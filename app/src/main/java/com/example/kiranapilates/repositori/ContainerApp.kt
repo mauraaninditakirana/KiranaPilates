@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 // 1. Interface Container
 interface ContainerApp {
     val pengunjungRepository: PengunjungRepository
+    val sesiRepository: SesiRepository
 }
 
 // 2. Implementasi Container
@@ -45,6 +46,9 @@ class DefaultContainerApp : ContainerApp {
 
     override val pengunjungRepository: PengunjungRepository by lazy {
         NetworkPengunjungRepository(retrofitService)
+    }
+    override val sesiRepository: SesiRepository by lazy {
+        NetworkSesiRepository(retrofitService) // TAMBAH INI
     }
 }
 
