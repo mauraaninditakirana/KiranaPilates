@@ -11,6 +11,7 @@ data class Sesi(
 
 @Serializable
 data class SesiResponse(
-    val status: String,
+    val status: Boolean,
+    val message: String,
     val data: List<Sesi>
 )

@@ -14,6 +14,7 @@ data class Pengunjung(
 
 @Serializable
 data class PengunjungResponse(
-    val status: String,
+    val status: Boolean,
+    val message: String,
     val data: List<Pengunjung>
 )

@@ -16,21 +16,19 @@ sealed class DaftarUiState {
 }
 
 class DaftarPengunjungViewModel(private val repository: PengunjungRepository) : ViewModel() {
-    // State untuk UI (Loading, Success, Error)
     var daftarUiState: DaftarUiState by mutableStateOf(DaftarUiState.Loading)
         private set
 
-    // State untuk fitur Search (Wajib ada agar UI tidak merah)
     var searchQuery by mutableStateOf("")
         private set
 
-    // Fungsi untuk update teks search dari UI
     fun updateSearchQuery(query: String) {
         searchQuery = query
     }
 
     fun getListPengunjung(token: String) {
         viewModelScope.launch {
+            daftarUiState = DaftarUiState.Loading
             try {
                 val response = repository.getPengunjung(token)
                 daftarUiState = DaftarUiState.Success(response.data)
