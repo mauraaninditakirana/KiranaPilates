@@ -8,23 +8,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.kiranapilates.repositori.PengunjungRepository
 import kotlinx.coroutines.launch
 
-class TambahPengunjungViewModel(private val repository: PengunjungRepository) : ViewModel() {
+class TambahPengunjungViewModel(private val pengunjungRepository: PengunjungRepository) : ViewModel() {
+    var namaInput by mutableStateOf("")
+    var noHpInput by mutableStateOf("")
+    var tipeInput by mutableStateOf("Guest") // Default Guest
 
-    var nama_lengkap by mutableStateOf("")
-        private set
-    var nohp by mutableStateOf("")
-        private set
-    var tipe_pengunjung by mutableStateOf("Reguler")
-        private set
-
-    fun updateNama(it: String) { nama_lengkap = it }
-    fun updateNoHp(it: String) { nohp = it }
-
-    fun simpanPengunjung() {
+    fun simpanPengunjung(onSuccess: () -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             try {
-                // repository.insertPengunjung(...)
-            } catch (e: Exception) { }
+                val response = pengunjungRepository.insertPengunjung(namaInput, noHpInput, tipeInput)
+                if (response.status == "success") onSuccess() else onError(response.message ?: "Gagal")
+            } catch (e: Exception) { onError("Kesalahan Jaringan") }
         }
     }
 }

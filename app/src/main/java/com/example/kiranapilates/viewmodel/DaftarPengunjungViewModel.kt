@@ -9,32 +9,29 @@ import com.example.kiranapilates.modeldata.Pengunjung
 import com.example.kiranapilates.repositori.PengunjungRepository
 import kotlinx.coroutines.launch
 
-sealed class DaftarUiState {
-    data class Success(val pengunjung: List<Pengunjung>) : DaftarUiState()
-    object Error : DaftarUiState()
-    object Loading : DaftarUiState()
-}
-
-class DaftarPengunjungViewModel(private val repository: PengunjungRepository) : ViewModel() {
-    var daftarUiState: DaftarUiState by mutableStateOf(DaftarUiState.Loading)
-        private set
-
+class DaftarPengunjungViewModel(private val pengunjungRepository: PengunjungRepository) : ViewModel() {
+    var daftarPengunjung by mutableStateOf<List<Pengunjung>>(emptyList())
+    var filteredPengunjung by mutableStateOf<List<Pengunjung>>(emptyList())
     var searchQuery by mutableStateOf("")
-        private set
 
-    fun updateSearchQuery(query: String) {
-        searchQuery = query
+    init { getPengunjung() }
+
+    fun getPengunjung() {
+        viewModelScope.launch {
+            try {
+                val response = pengunjungRepository.getAllPengunjung()
+                daftarPengunjung = response.data ?: emptyList()
+                filteredPengunjung = daftarPengunjung
+            } catch (e: Exception) { /* Handle error */ }
+        }
     }
 
-    fun getListPengunjung(token: String) {
-        viewModelScope.launch {
-            daftarUiState = DaftarUiState.Loading
-            try {
-                val response = repository.getPengunjung(token)
-                daftarUiState = DaftarUiState.Success(response.data)
-            } catch (e: Exception) {
-                daftarUiState = DaftarUiState.Error
-            }
+    fun onSearchQueryChange(query: String) {
+        searchQuery = query
+        filteredPengunjung = if (query.isEmpty()) {
+            daftarPengunjung
+        } else {
+            daftarPengunjung.filter { it.nama_lengkap.contains(query, ignoreCase = true) }
         }
     }
 }

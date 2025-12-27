@@ -6,20 +6,32 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kiranapilates.modeldata.Sesi
+import com.example.kiranapilates.repositori.AuthRepository
 import com.example.kiranapilates.repositori.SesiRepository
 import kotlinx.coroutines.launch
 
-class SesiViewModel(private val repository: SesiRepository) : ViewModel() {
-    var sesiList by mutableStateOf<List<Sesi>>(listOf())
-        private set
+class SesiViewModel(
+    private val sesiRepository: SesiRepository,
+    private val authRepository: AuthRepository
+) : ViewModel() {
+    var daftarSesi by mutableStateOf<List<Sesi>>(emptyList())
 
-    // Fungsi untuk Halaman 7 (Ambil 3 Card Sesi)
-    fun fetchSesi(token: String) {
+    init { loadSesi() }
+
+    fun loadSesi() {
         viewModelScope.launch {
-            try {
-                val response = repository.getSesi(token)
-                sesiList = response.data
-            } catch (e: Exception) { }
+            val response = sesiRepository.getSesi()
+            daftarSesi = response.data ?: emptyList()
+        }
+    }
+
+    fun updateSesi(token: String, id: Int, nama: String, jam: String, inst: String, onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            val response = sesiRepository.updateSesi(token, id, nama, jam, inst)
+            if (response.status == "success") {
+                loadSesi()
+                onSuccess()
+            }
         }
     }
 }
