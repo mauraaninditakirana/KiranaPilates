@@ -1,78 +1,74 @@
 package com.example.kiranapilates.apiservice
 
-
 import com.example.kiranapilates.modeldata.*
 import retrofit2.http.*
 
 interface KiranaApiService {
 
-    // --- 1. AUTH (Halaman 1 & 2) ---
+    // --- AUTHENTICATION ---
     @FormUrlEncoded
     @POST("auth/login.php")
-    suspend fun loginAdmin(
-        @Field("username") user: String,
-        @Field("password") pass: String
+    suspend fun login(
+        @Field("username") username: String,
+        @Field("password") password: String
     ): LoginResponse
 
     @POST("auth/logout.php")
-    suspend fun logoutAdmin(
+    suspend fun logout(
         @Header("Authorization") token: String
-    ): BasicResponse
+    ): LoginResponse
 
 
-    // --- 2. PENGUNJUNG (Halaman 3 - 6) ---
+    // --- PENGUNJUNG ---
     @GET("pengunjung/read.php")
-    suspend fun getAllPengunjung(
-        @Header("Authorization") token: String
-    ): PengunjungResponse
+    suspend fun getAllPengunjung(): PengunjungResponse
 
     @FormUrlEncoded
     @POST("pengunjung/create.php")
-    suspend fun insertPengunjung(
-        @Header("Authorization") token: String,
+    suspend fun createPengunjung(
         @Field("nama_lengkap") nama: String,
         @Field("no_hp") hp: String,
         @Field("tipe_pengunjung") tipe: String
-    ): BasicResponse
+    ): PengunjungResponse
 
     @FormUrlEncoded
     @PUT("pengunjung/update.php")
     suspend fun updatePengunjung(
         @Header("Authorization") token: String,
-        @Field("id_pengunjung") id: String,
+        @Field("id_pengunjung") id: Int,
         @Field("nama_lengkap") nama: String,
         @Field("no_hp") hp: String,
-        @Field("tipe_pengunjung") tipe: String
-    ): BasicResponse
+        @Field("tipe_pengunjung") tipe: String,
+        @Field("tambah_paket") tambahPaket: String = "0"
+    ): PengunjungResponse
 
     @FormUrlEncoded
     @POST("pengunjung/delete.php")
     suspend fun deletePengunjung(
-        @Header("Authorization") token: String,
-        @Field("id_pengunjung") id: String
-    ): BasicResponse
+        @Field("id_pengunjung") id: Int
+    ): PengunjungResponse
 
-    // --- 3. SESI (Halaman 7 - 8) ---
+
+    // --- SESI ---
     @GET("sesi/read.php")
-    suspend fun getAllSesi(
-        @Header("Authorization") token: String
-    ): SesiResponse
+    suspend fun getAllSesi(): SesiResponse
 
     @FormUrlEncoded
     @POST("sesi/update.php")
     suspend fun updateSesi(
         @Header("Authorization") token: String,
-        @Field("id_sesi") id: String,
+        @Field("id_sesi") id: Int,
+        @Field("nama_sesi") nama: String,
         @Field("jam_operasional") jam: String,
         @Field("nama_instruktur") instruktur: String
-    ): BasicResponse
+    ): SesiResponse
 
-    // --- 4. CHECK-IN (Halaman 9 - 11) ---
+
+    // --- CHECKIN ---
     @FormUrlEncoded
-    @POST("checkin/create.php") 
-    suspend fun submitCheckin(
-        @Header("Authorization") token: String,
-        @Field("id_pengunjung") idPengunjung: String,
-        @Field("id_sesi") idSesi: String
-    ): BasicResponse
+    @POST("checkin/create.php")
+    suspend fun createCheckin(
+        @Field("id_pengunjung") idPengunjung: Int,
+        @Field("id_sesi") idSesi: Int
+    ): CheckinResponse
 }

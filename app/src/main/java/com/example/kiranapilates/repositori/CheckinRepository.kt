@@ -1,18 +1,14 @@
 package com.example.kiranapilates.repositori
 
 import com.example.kiranapilates.apiservice.KiranaApiService
-import com.example.kiranapilates.modeldata.BasicResponse
+import com.example.kiranapilates.modeldata.CheckinResponse
 
+// REPOSITORY CHECKIN
 interface CheckinRepository {
-    // Fungsi untuk Halaman 10 (Submit Check-in)
-    suspend fun insertCheckin(
-        token: String,
-        idPengunjung: String,
-        idSesi: String
-    ): BasicResponse
+    suspend fun createCheckin(idPengunjung: Int, idSesi: Int): CheckinResponse
 }
 
-class NetworkCheckinRepository(private val kiranaApiService: KiranaApiService) : CheckinRepository {
-    override suspend fun insertCheckin(token: String, idPengunjung: String, idSesi: String): BasicResponse =
-        kiranaApiService.submitCheckin(token, idPengunjung, idSesi)
+class OfflineCheckinRepository(private val kiranaApiService: KiranaApiService) : CheckinRepository {
+    override suspend fun createCheckin(idPengunjung: Int, idSesi: Int): CheckinResponse =
+        kiranaApiService.createCheckin(idPengunjung, idSesi)
 }
