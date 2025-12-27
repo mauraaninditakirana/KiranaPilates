@@ -11,7 +11,7 @@ data class LoginResponse(
 
 @Serializable
 data class AdminData(
-    val id_admin: String,
+    val id_admin: Int,
     val username: String,
     val token: String
 )
