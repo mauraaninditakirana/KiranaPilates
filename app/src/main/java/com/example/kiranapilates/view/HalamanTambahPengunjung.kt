@@ -1,35 +1,36 @@
 package com.example.kiranapilates.view
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kiranapilates.R
 import com.example.kiranapilates.viewmodel.TambahPengunjungViewModel
+import com.example.kiranapilates.viewmodel.provider.PenyediaViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HalamanTambahPengunjung(
-    viewModel: TambahPengunjungViewModel,
-    onNavigateBack: () -> Unit
+    onBack: () -> Unit,
+    onSuccess: () -> Unit,
+    viewModel: TambahPengunjungViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
-    val paddingMedium = dimensionResource(id = R.dimen.padding_medium)
-    var showDialog by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.title_tambah_pengunjung)) }, // Pakai string milikmu
+                title = { Text(stringResource(R.string.tambah_pengunjung)) },
                 navigationIcon = {
-                    IconButton(onClick = onNavigateBack) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = stringResource(R.string.back_content_desc) // Ini yang tadi salah
-                        )
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                     }
                 }
             )
@@ -38,63 +39,54 @@ fun HalamanTambahPengunjung(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(paddingMedium)
-                .fillMaxSize()
+                .padding(16.dp)
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Field Nama Lengkap
             OutlinedTextField(
-                value = viewModel.nama_lengkap,
-                onValueChange = { viewModel.updateNama(it) },
-                label = { Text(stringResource(R.string.label_nama_lengkap)) },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true
+                value = viewModel.namaInput,
+                onValueChange = { viewModel.namaInput = it },
+                label = { Text("Nama Lengkap") },
+                modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(paddingMedium))
-
-            // Field Nomor HP
             OutlinedTextField(
-                value = viewModel.nohp,
-                onValueChange = { viewModel.updateNoHp(it) },
-                label = { Text(stringResource(R.string.label_nohp)) },
-                modifier = Modifier.fillMaxWidth(),
-                singleLine = true
+                value = viewModel.noHpInput,
+                onValueChange = { viewModel.noHpInput = it },
+                label = { Text("Nomor HP") },
+                modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(paddingMedium))
+            Text("Pilih Tipe Pengunjung:")
+            Row {
+                RadioButton(
+                    selected = viewModel.tipeInput == "Member",
+                    onClick = { viewModel.tipeInput = "Member" }
+                )
+                Text("Member", modifier = Modifier.padding(top = 12.dp))
+                Spacer(modifier = Modifier.width(16.dp))
+                RadioButton(
+                    selected = viewModel.tipeInput == "Guest",
+                    onClick = { viewModel.tipeInput = "Guest" }
+                )
+                Text("Guest", modifier = Modifier.padding(top = 12.dp))
+            }
 
-            // Label Tipe
-            Text(text = stringResource(R.string.label_tipe), style = MaterialTheme.typography.bodyLarge)
-
-            // Spacer untuk mendorong button ke bawah
-            Spacer(modifier = Modifier.weight(1f))
-
-            // Button Submit
             Button(
                 onClick = {
-                    viewModel.simpanPengunjung()
-                    showDialog = true
+                    viewModel.simpanPengunjung(
+                        onSuccess = {
+                            Toast.makeText(context, context.getString(R.string.sukses_tambah), Toast.LENGTH_SHORT).show()
+                            onSuccess()
+                        },
+                        onError = { msg ->
+                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                        }
+                    )
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = stringResource(R.string.btn_submit))
-            }
-
-            // POP-UP NOTIFIKASI BERHASIL
-            if (showDialog) {
-                AlertDialog(
-                    onDismissRequest = { showDialog = false },
-                    confirmButton = {
-                        TextButton(onClick = {
-                            showDialog = false
-                            onNavigateBack() // Kembali ke Daftar Pengunjung
-                        }) {
-                            Text("OK")
-                        }
-                    },
-                    title = { Text("Notifikasi") },
-                    text = { Text(stringResource(R.string.msg_success)) }
-                )
+                Text(stringResource(R.string.btn_simpan))
             }
         }
     }
