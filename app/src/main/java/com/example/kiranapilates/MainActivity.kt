@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.example.kiranapilates.ui.theme.KiranaPilatesTheme
 import com.example.kiranapilates.uicontroller.PetaNavigasi
 
@@ -21,8 +23,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KiranaPilatesTheme {
-                Surface(modifier = Modifier.fillMaxSize()) {
-                    PetaNavigasi()
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background)
+                {
+                    val navController = rememberNavController()
+                    // Memanggil Peta Navigasi Utama
+                    PetaNavigasi(navController = navController)
                 }
             }
         }

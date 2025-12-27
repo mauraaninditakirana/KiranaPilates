@@ -1,103 +1,151 @@
 package com.example.kiranapilates.uicontroller
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.kiranapilates.uicontroller.route.DestinasiCheckinForm
-import com.example.kiranapilates.uicontroller.route.DestinasiCheckinMenu
-import com.example.kiranapilates.uicontroller.route.DestinasiDaftarPengunjung
-import com.example.kiranapilates.uicontroller.route.DestinasiDetailPengunjung
-import com.example.kiranapilates.uicontroller.route.DestinasiEditPengunjung
-import com.example.kiranapilates.uicontroller.route.DestinasiSesi
-import com.example.kiranapilates.uicontroller.route.DestinasiSesiUpdate
-import com.example.kiranapilates.uicontroller.route.DestinasiTambahPengunjung
-import com.example.kiranapilates.view.HalamanCheckinMenu
-import com.example.kiranapilates.view.HalamanCheckinForm
-import com.example.kiranapilates.view.HalamanDaftarPengunjung
-import com.example.kiranapilates.view.HalamanDetailPengunjung
-import com.example.kiranapilates.view.HalamanEditPengunjung
-import com.example.kiranapilates.view.HalamanSesi
-import com.example.kiranapilates.view.HalamanSesiUpdate
-import com.example.kiranapilates.view.HalamanTambahPengunjung
-import com.example.kiranapilates.viewmodel.provider.PenyediaViewModel
+import com.example.kiranapilates.uicontroller.route.*
+import com.example.kiranapilates.view.*
 
 @Composable
-fun PetaNavigasi() {
-    val navController = rememberNavController()
+fun PetaNavigasi(
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiDaftarPengunjung.route
+        startDestination = DestinasiLogin.route,
+        modifier = modifier
     ) {
+        // Halaman 1: Login
+        composable(route = DestinasiLogin.route) {
+            HalamanLogin(
+                onLoginSuccess = {
+                    navController.navigate(DestinasiDashboard.route) {
+                        popUpTo(DestinasiLogin.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+
+        // Halaman 2: Dashboard
+        composable(route = DestinasiDashboard.route) {
+            HalamanDashboard(
+                onNavigateToRegistrasi = { navController.navigate(DestinasiDaftarPengunjung.route) },
+                onNavigateToSesi = { navController.navigate(DestinasiSesi.route) },
+                onNavigateToCheckin = { navController.navigate(DestinasiCheckin.route) },
+                onLogout = {
+                    navController.navigate(DestinasiLogin.route) {
+                        popUpTo(DestinasiDashboard.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+
         // Halaman 3: Daftar Pengunjung
         composable(route = DestinasiDaftarPengunjung.route) {
             HalamanDaftarPengunjung(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onDetailClick = { id -> navController.navigate("${DestinasiDetailPengunjung.route}/$id") },
-                onTambahClick = { navController.navigate(DestinasiTambahPengunjung.route) },
+                onTambahPengunjung = { navController.navigate(DestinasiTambahPengunjung.route) },
+                onDetailClick = { id ->
+                    navController.navigate("${DestinasiDetailPengunjung.route}/$id")
+                },
                 onBack = { navController.popBackStack() }
             )
         }
+
+        // Halaman 4: Tambah Pengunjung
         composable(route = DestinasiTambahPengunjung.route) {
             HalamanTambahPengunjung(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onNavigateBack = { navController.popBackStack() }
+                onBack = { navController.popBackStack() },
+                onSuccess = { navController.popBackStack() }
             )
         }
+
+        // Halaman 5: Detail Pengunjung
         composable(
-            route = DestinasiDetailPengunjung.idWithArgs,
-            arguments = listOf(navArgument("id_pengunjung") { type = NavType.StringType })
+            route = DestinasiDetailPengunjung.routeWithArgs,
+            arguments = listOf(navArgument(DestinasiDetailPengunjung.PENGUNJUNG_ID_ARG) {
+                type = NavType.IntType
+            })
         ) {
             HalamanDetailPengunjung(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onNavigateBack = { navController.popBackStack() }
+                onEditClick = { id ->
+                    navController.navigate("${DestinasiEditPengunjung.route}/$id")
+                },
+                onBack = { navController.popBackStack() }
             )
         }
+
+        // Halaman 6: Edit Pengunjung
         composable(
-            route = DestinasiEditPengunjung.idWithArgs,
-            arguments = listOf(navArgument("id_pengunjung") { type = NavType.StringType })
+            route = DestinasiEditPengunjung.routeWithArgs,
+            arguments = listOf(navArgument(DestinasiEditPengunjung.PENGUNJUNG_ID_ARG) {
+                type = NavType.IntType
+            })
         ) {
             HalamanEditPengunjung(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onNavigateBack = { navController.popBackStack() }
+                token = "Gunakan_Token_Login_Disini",
+                onBack = { navController.popBackStack() }
             )
         }
+
+        // Halaman 7: Daftar Sesi
         composable(route = DestinasiSesi.route) {
             HalamanSesi(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onEditClick = { id -> navController.navigate("${DestinasiSesiUpdate.route}/$id") },
+                onEditSesi = { id ->
+                    navController.navigate("${DestinasiSesiUpdate.route}/$id")
+                },
                 onBack = { navController.popBackStack() }
             )
         }
+
+        // Halaman 8: Update Sesi
         composable(
-            route = DestinasiSesiUpdate.idWithArgs,
-            arguments = listOf(navArgument("id_sesi") { type = NavType.StringType })
+            route = DestinasiSesiUpdate.routeWithArgs,
+            arguments = listOf(navArgument(DestinasiSesiUpdate.SESI_ID_ARG) {
+                type = NavType.IntType
+            })
         ) {
             HalamanSesiUpdate(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onNavigateBack = { navController.popBackStack() }
-            )
-        }
-        composable(route = DestinasiCheckinMenu.route) {
-            HalamanCheckinMenu(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onSesiClick = { idSesi, tanggal ->
-                    // Navigasi ke Riwayat (Halaman 11)
-                    navController.navigate("riwayat_checkin/$idSesi/$tanggal")
-                },
-                onTambahClick = {
-                    navController.navigate(DestinasiCheckinForm.route)
-                },
+                token = "Gunakan_Token_Login_Disini",
                 onBack = { navController.popBackStack() }
             )
         }
+
+        // Halaman 9: Menu Checkin
+        composable(route = DestinasiCheckin.route) {
+            HalamanCheckinMenu(
+                onSesiClick = { idSesi, tanggal ->
+                    navController.navigate("${DestinasiRiwayatCheckin.route}/$idSesi/$tanggal")
+                },
+                onAddCheckin = { navController.navigate(DestinasiCheckinForm.route) },
+                onBack = { navController.popBackStack() }
+            )
+        }
+
+        // Halaman 10: Form Checkin
         composable(route = DestinasiCheckinForm.route) {
             HalamanCheckinForm(
-                viewModel = viewModel(factory = PenyediaViewModel.Factory),
-                onNavigateBack = { navController.popBackStack() }
+                onBack = { navController.popBackStack() },
+                onEditPengunjung = { id ->
+                    navController.navigate("${DestinasiEditPengunjung.route}/$id")
+                }
+            )
+        }
+
+        // Halaman 11: Riwayat Checkin
+        composable(
+            route = DestinasiRiwayatCheckin.routeWithArgs,
+            arguments = listOf(
+                navArgument(DestinasiRiwayatCheckin.SESI_ID_ARG) { type = NavType.IntType },
+                navArgument(DestinasiRiwayatCheckin.TANGGAL_ARG) { type = NavType.StringType }
+            )
+        ) {
+            HalamanRiwayatCheckin(
+                onBack = { navController.popBackStack() }
             )
         }
     }
