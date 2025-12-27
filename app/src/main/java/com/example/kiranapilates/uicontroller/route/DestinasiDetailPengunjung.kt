@@ -1,8 +1,9 @@
 package com.example.kiranapilates.uicontroller.route
+import com.example.kiranapilates.R
+
 object DestinasiDetailPengunjung : DestinasiNavigasi {
     override val route = "detail_pengunjung"
-    override val titleRes = "Detail Pengunjung"
-
-    // PERBAIKAN: Gunakan tanda kutip dan dollar sign yang benar
-    const val idWithArgs = "detail_pengunjung/{id_pengunjung}"
+    const val PENGUNJUNG_ID_ARG = "itemId"
+    val routeWithArgs = "$route/{$PENGUNJUNG_ID_ARG}"
+    override val titleRes = R.string.detail_pengunjung
 }
