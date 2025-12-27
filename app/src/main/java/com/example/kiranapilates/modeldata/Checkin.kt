@@ -4,16 +4,17 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Checkin(
-    val id_checkin: String? = null,
-    val id_pengunjung: String,
-    val nama_lengkap: String? = null,
-    val id_sesi: String,
-    val nama_sesi: String? = null,
-    val tanggal: String? = null
+    val id_checkin: Int,
+    val id_pengunjung: Int,
+    val id_sesi: Int,
+    val tanggal_checkin: String,
+    val tipe_saat_checkin: String,
+    val nama_lengkap: String = ""
 )
 
 @Serializable
-data class BasicResponse(
+data class CheckinResponse(
     val status: String,
-    val message: String
+    val message: String,
+    val data: List<Checkin>? = null
 )

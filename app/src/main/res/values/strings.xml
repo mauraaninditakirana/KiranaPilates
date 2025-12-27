@@ -1,18 +1,37 @@
 <resources>
-    <string name="app_name">KiranaPilates</string>
-    <string name="title_daftar_pengunjung">Daftar Pengunjung</string>
-    <string name="search_placeholder">Cari Nama Pengunjung...</string>
-    <string name="back_content_desc">Kembali</string>
-    <string name="add_content_desc">Tambah</string>
-    <string name="empty_data">Tidak ada data pengunjung</string>
-    <string name="error_data">Gagal mengambil data</string>
-    <string name="type_label">Tipe: %1$s</string>
-    <string name="title_tambah_pengunjung">Tambah Pengunjung</string>
-    <string name="label_nama_lengkap">Nama Lengkap</string>
-    <string name="label_nohp">Nomor HP</string>
-    <string name="label_tipe">Tipe Pengunjung</string>
-    <string name="btn_submit">Submit</string>
-    <string name="msg_success">Pengunjung berhasil ditambahkan!</string>
-    <string name="msg_error">Gagal menambah data, coba lagi.</string>
+    <string name="app_name">Kirana Pilates Manager</string>
 
+    <string name="welcome_admin">Selamat datang admin, silahkan login untuk mulai bekerja</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_failed">Login Gagal, periksa kembali akun Anda</string>
+
+    <string name="dashboard_title">Dashboard Admin</string>
+    <string name="menu_registrasi">Registrasi Pengunjung</string>
+    <string name="menu_sesi">Sesi</string>
+    <string name="menu_checkin">Check-In</string>
+    <string name="logout_confirm">Apakah Anda yakin ingin logout?</string>
+
+    <string name="daftar_pengunjung">Daftar Pengunjung</string>
+    <string name="search_hint">Cari nama pengunjung...</string>
+    <string name="detail_pengunjung">Detail Pengunjung</string>
+    <string name="tambah_pengunjung">Tambah Pengunjung</string>
+    <string name="edit_pengunjung">Edit Pengunjung</string>
+    <string name="hapus_confirm">Yakin hapus pengunjung?</string>
+    <string name="sukses_tambah">Pengunjung baru telah ditambahkan</string>
+    <string name="gagal_tambah">Data pengunjung gagal ditambahkan, cek ulang data</string>
+
+    <string name="edit_sesi">Edit Sesi</string>
+    <string name="checkin_hari_ini">Check-In Hari Ini</string>
+    <string name="tambah_checkin">Tambah Check-In</string>
+    <string name="riwayat_checkin">Riwayat Check-In</string>
+    <string name="sukses_checkin">Check-in berhasil</string>
+    <string name="gagal_checkin_kuota">Check-in gagal, kuota member habis</string>
+    <string name="gagal_checkin_data">Check-in gagal, periksa data</string>
+
+    <string name="btn_simpan">Simpan</string>
+    <string name="btn_batal">Batal</string>
+    <string name="btn_hapus">Hapus</string>
+    <string name="btn_edit">Edit</string>
 </resources>
