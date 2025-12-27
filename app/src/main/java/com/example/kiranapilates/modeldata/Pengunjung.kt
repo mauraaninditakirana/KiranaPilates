@@ -4,17 +4,18 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Pengunjung(
-    val id_pengunjung: String,
+    val id_pengunjung: Int,
     val nama_lengkap: String,
     val no_hp: String,
-    val tipe_pengunjung: String,
-    val kuota_sisa: String,
-    val total_kunjungan: String
+    val tipe_pengunjung: String, // Member atau Guest
+    val kuota_sisa: Int,
+    val total_kunjungan: Int,
+    val created_at: String? = null
 )
 
 @Serializable
 data class PengunjungResponse(
-    val status: Boolean,
-    val message: String,
-    val data: List<Pengunjung>
+    val status: String,
+    val message: String? = null,
+    val data: List<Pengunjung>? = null
 )
