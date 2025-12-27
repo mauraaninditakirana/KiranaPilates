@@ -1,68 +1,50 @@
 package com.example.kiranapilates.repositori
 
-import android.app.Application
 import com.example.kiranapilates.apiservice.KiranaApiService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
-// 1. Interface Container
-interface ContainerApp {
-    val pengunjungRepository: PengunjungRepository
+interface AppContainer {
+    val kiranaRepository: PengunjungRepository
     val sesiRepository: SesiRepository
-
     val checkinRepository: CheckinRepository
+    val authRepository: AuthRepository // Tambahan untuk Login/Logout
 }
 
-// 2. Implementasi Container
-class DefaultContainerApp : ContainerApp {
+class ContainerApp : AppContainer {
+    // GANTI IP INI SESUAI IP LAPTOP (WIFI YANG SAMA DENGAN HP)
+    private val baseUrl = "http://10.0.2.2/kirana_pilates_api/"
 
-    private val baseUrl = "http://192.168.100.205/kirana_pilates_api/"
-
-    private val logging = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
+    private val json = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues = true
     }
 
-    private val klien = OkHttpClient.Builder()
-        .addInterceptor(logging)
-        .build()
-
     private val retrofit: Retrofit = Retrofit.Builder()
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(baseUrl)
-        .addConverterFactory(
-            Json {
-                ignoreUnknownKeys = true
-                prettyPrint = true
-                isLenient = true
-            }.asConverterFactory("application/json".toMediaType())
-        )
-        .client(klien)
         .build()
 
     private val retrofitService: KiranaApiService by lazy {
         retrofit.create(KiranaApiService::class.java)
     }
 
-    override val pengunjungRepository: PengunjungRepository by lazy {
-        NetworkPengunjungRepository(retrofitService)
+    // Inisialisasi semua Repositori
+    override val kiranaRepository: PengunjungRepository by lazy {
+        OfflinePengunjungRepository(retrofitService)
     }
+
     override val sesiRepository: SesiRepository by lazy {
-        NetworkSesiRepository(retrofitService)
+        OfflineSesiRepository(retrofitService)
     }
+
     override val checkinRepository: CheckinRepository by lazy {
-        NetworkCheckinRepository(retrofitService)
+        OfflineCheckinRepository(retrofitService)
     }
-}
 
-// 3. Class Application (Jantung Aplikasi - Disatukan di sini)
-class KiranaPilatesApp : Application() {
-    lateinit var container: ContainerApp
-
-    override fun onCreate() {
-        super.onCreate()
-        this.container = DefaultContainerApp()
+    override val authRepository: AuthRepository by lazy {
+        OfflineAuthRepository(retrofitService)
     }
 }
