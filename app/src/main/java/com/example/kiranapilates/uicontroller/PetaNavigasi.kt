@@ -101,11 +101,18 @@ fun PetaNavigasi(
             arguments = listOf(navArgument(DestinasiEditPengunjung.PENGUNJUNG_ID_ARG) {
                 type = NavType.IntType
             })
-        ) {
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt(DestinasiEditPengunjung.PENGUNJUNG_ID_ARG)
             HalamanEditPengunjung(
                 // 3. GUNAKAN TOKEN STATE YANG SUDAH TERISI SAAT LOGIN
                 token = tokenState,
-                onBack = { navController.popBackStack() }
+                onBack = {
+                    navController.navigate("${DestinasiDetailPengunjung.route}/$id"){
+                        popUpTo(DestinasiDaftarPengunjung.route){
+                            inclusive = false
+                        }
+                    }
+                     }
             )
         }
 
