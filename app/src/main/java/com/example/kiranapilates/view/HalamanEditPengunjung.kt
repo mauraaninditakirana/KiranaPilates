@@ -81,7 +81,19 @@ fun HalamanEditPengunjung(
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Button(
-                    onClick = { viewModel.updatePengunjung(token, onBack) },
+                    onClick = {
+                        // 1. CEK LOGCAT: Lihat apakah token kosong atau ada isinya
+                        println("DEBUG TOKEN DI EDIT: '$token'")
+
+                        // 2. LOGIKA PENGAMAN: Hanya kirim jika token tidak kosong
+                        if (token.isNotEmpty()) {
+                            println("DEBUG: Mengirim request update...")
+                            viewModel.updatePengunjung(token, onBack)
+                        } else {
+                            println("ERROR: Token kosong! Update dibatalkan.")
+                            // Opsional: Kamu bisa tambahkan Toast disini jika mau
+                        }
+                    },
                     modifier = Modifier.weight(1f)
                 ) {
                     Text("Simpan")

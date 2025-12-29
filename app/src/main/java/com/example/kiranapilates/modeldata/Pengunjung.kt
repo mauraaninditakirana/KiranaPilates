@@ -19,3 +19,10 @@ data class PengunjungResponse(
     val message: String? = null,
     val data: List<Pengunjung>? = null
 )
+data class PengunjungUpdateBody(
+    val id_pengunjung: Int,
+    val nama_lengkap: String,
+    val no_hp: String,
+    val tipe_pengunjung: String,
+    val tambah_paket: String
+)

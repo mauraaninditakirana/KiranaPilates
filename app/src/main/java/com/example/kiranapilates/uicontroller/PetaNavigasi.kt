@@ -1,6 +1,10 @@
 package com.example.kiranapilates.uicontroller
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue          // Import penting untuk state
+import androidx.compose.runtime.mutableStateOf  // Import penting untuk state
+import androidx.compose.runtime.remember        // Import penting untuk state
+import androidx.compose.runtime.setValue        // Import penting untuk state
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -13,8 +17,14 @@ import com.example.kiranapilates.view.*
 @Composable
 fun PetaNavigasi(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    // Token awal (bisa kosong jika belum login)
+    token: String = ""
 ) {
+    // 1. STATE UNTUK MENYIMPAN TOKEN SELAMA APLIKASI BERJALAN
+    // Kita inisialisasi dengan parameter token (jika ada)
+    var tokenState by remember { mutableStateOf(token) }
+
     NavHost(
         navController = navController,
         startDestination = DestinasiLogin.route,
@@ -23,7 +33,11 @@ fun PetaNavigasi(
         // Halaman 1: Login
         composable(route = DestinasiLogin.route) {
             HalamanLogin(
-                onLoginSuccess = {
+                onLoginSuccess = { tokenBaru ->
+                    // 2. SAAT LOGIN SUKSES, SIMPAN TOKEN KE STATE
+                    // Token ini yang akan dipakai halaman lain
+                    tokenState = tokenBaru
+
                     navController.navigate(DestinasiDashboard.route) {
                         popUpTo(DestinasiLogin.route) { inclusive = true }
                     }
@@ -38,6 +52,8 @@ fun PetaNavigasi(
                 onNavigateToSesi = { navController.navigate(DestinasiSesi.route) },
                 onNavigateToCheckin = { navController.navigate(DestinasiCheckin.route) },
                 onLogout = {
+                    // Reset token saat logout
+                    tokenState = ""
                     navController.navigate(DestinasiLogin.route) {
                         popUpTo(DestinasiDashboard.route) { inclusive = true }
                     }
@@ -87,7 +103,8 @@ fun PetaNavigasi(
             })
         ) {
             HalamanEditPengunjung(
-                token = "Gunakan_Token_Login_Disini",
+                // 3. GUNAKAN TOKEN STATE YANG SUDAH TERISI SAAT LOGIN
+                token = tokenState,
                 onBack = { navController.popBackStack() }
             )
         }
@@ -110,7 +127,8 @@ fun PetaNavigasi(
             })
         ) {
             HalamanSesiUpdate(
-                token = "Gunakan_Token_Login_Disini",
+                // 4. JANGAN PAKAI STRING HARDCODED, PAKAI TOKEN ASLI
+                token = tokenState,
                 onBack = { navController.popBackStack() }
             )
         }

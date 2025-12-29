@@ -31,15 +31,16 @@ interface KiranaApiService {
         @Field("tipe_pengunjung") tipe: String
     ): PengunjungResponse
 
+    // Di KiranaApiService.kt
     @FormUrlEncoded
-    @POST("pengunjung/update.php")
+    @POST("pengunjung/update.php") // Ubah jadi POST
     suspend fun updatePengunjung(
         @Header("Authorization") token: String,
-        @Field("id_pengunjung") id: Int,
+        @Field("id_pengunjung") id: String,
         @Field("nama_lengkap") nama: String,
         @Field("no_hp") hp: String,
         @Field("tipe_pengunjung") tipe: String,
-        @Field("tambah_paket") tambahPaket: String = "0"
+        @Field("tambah_paket") tambahPaket: String
     ): PengunjungResponse
 
     @FormUrlEncoded
