@@ -64,6 +64,10 @@ interface KiranaApiService {
         @Field("nama_instruktur") instruktur: String
     ): SesiResponse
 
+    @GET("sesi/get_by_id.php")
+    suspend fun getSesiById(
+        @Query("id_sesi") id: Int
+    ): SesiResponse
 
     // --- CHECKIN ---
     @FormUrlEncoded

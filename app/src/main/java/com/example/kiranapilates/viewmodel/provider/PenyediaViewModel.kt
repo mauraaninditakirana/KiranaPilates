@@ -66,7 +66,10 @@ object PenyediaViewModel {
         // Initializer untuk Halaman 8 (Update Sesi - Jam/Instruktur)
         initializer {
             SesiUpdateViewModel(
-                kiranaApp().container.sesiRepository
+                savedStateHandle = this.createSavedStateHandle(),
+
+                // 2. Masukkan Repository
+                sesiRepository = kiranaApp().container.sesiRepository
             )
         }
 

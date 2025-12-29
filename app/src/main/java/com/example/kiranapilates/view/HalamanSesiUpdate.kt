@@ -39,8 +39,14 @@ fun HalamanSesiUpdate(
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(text = "Sesi: ${viewModel.namaSesi}", style = MaterialTheme.typography.titleLarge)
+            // Menampilkan Nama Sesi (Pagi/Sore) sebagai Judul (Read Only)
+            // Jika ingin bisa diedit juga, ganti jadi OutlinedTextField seperti bawahnya
+            Text(
+                text = "Edit Sesi: ${viewModel.namaSesi}",
+                style = MaterialTheme.typography.titleLarge
+            )
 
+            // Input Jam (Otomatis terisi dari loadDataLama)
             OutlinedTextField(
                 value = viewModel.jamInput,
                 onValueChange = { viewModel.jamInput = it },
@@ -48,12 +54,15 @@ fun HalamanSesiUpdate(
                 modifier = Modifier.fillMaxWidth()
             )
 
+            // Input Instruktur (Otomatis terisi dari loadDataLama)
             OutlinedTextField(
                 value = viewModel.instrukturInput,
                 onValueChange = { viewModel.instrukturInput = it },
                 label = { Text("Nama Instruktur") },
                 modifier = Modifier.fillMaxWidth()
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
