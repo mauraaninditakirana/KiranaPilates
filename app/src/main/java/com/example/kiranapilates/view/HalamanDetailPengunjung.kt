@@ -78,10 +78,11 @@ fun HalamanDetailPengunjung(
     if (showDeleteDialog) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
-            title = { Text(stringResource(R.string.hapus_confirm)) },
+            title = { Text(stringResource(R.string.hapus_confirm)) }, // Pastikan stringResource benar
             confirmButton = {
                 TextButton(onClick = {
-                    pengunjung?.let { viewModel.deletePengunjung(it.id_pengunjung, onBack) }
+                    // FIX: Hapus parameter ID, cukup panggil onBack sebagai onSuccess
+                    viewModel.deletePengunjung(onSuccess = onBack)
                     showDeleteDialog = false
                 }) {
                     Text("Ya")

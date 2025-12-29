@@ -71,4 +71,7 @@ interface KiranaApiService {
         @Field("id_pengunjung") idPengunjung: Int,
         @Field("id_sesi") idSesi: Int
     ): CheckinResponse
+
+    @GET("pengunjung/get_by_id.php")
+    suspend fun getPengunjungById(@Query("id_pengunjung") id: Int): PengunjungResponse
 }

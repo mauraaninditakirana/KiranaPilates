@@ -8,6 +8,7 @@ interface PengunjungRepository {
     suspend fun insertPengunjung(nama: String, hp: String, tipe: String): PengunjungResponse
     suspend fun updatePengunjung(token: String, id: Int, nama: String, hp: String, tipe: String, tambahPaket: String): PengunjungResponse
     suspend fun deletePengunjung(id: Int): PengunjungResponse
+    suspend fun getPengunjungById(id: Int): PengunjungResponse
 }
 
 class OfflinePengunjungRepository(private val kiranaApiService: KiranaApiService) : PengunjungRepository {
@@ -22,4 +23,7 @@ class OfflinePengunjungRepository(private val kiranaApiService: KiranaApiService
 
     override suspend fun deletePengunjung(id: Int): PengunjungResponse =
         kiranaApiService.deletePengunjung(id)
+
+    override suspend fun getPengunjungById(id: Int): PengunjungResponse =
+        kiranaApiService.getPengunjungById(id)
 }
