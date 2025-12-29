@@ -18,6 +18,7 @@ class OfflinePengunjungRepository(private val kiranaApiService: KiranaApiService
     override suspend fun insertPengunjung(nama: String, hp: String, tipe: String): PengunjungResponse =
         kiranaApiService.createPengunjung(nama, hp, tipe)
 
+    // Memastikan update menggunakan token dan parameter yang lengkap
     override suspend fun updatePengunjung(token: String, id: Int, nama: String, hp: String, tipe: String, tambahPaket: String): PengunjungResponse =
         kiranaApiService.updatePengunjung(token, id, nama, hp, tipe, tambahPaket)
 

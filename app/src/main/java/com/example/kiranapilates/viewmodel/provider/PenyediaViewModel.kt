@@ -50,7 +50,8 @@ object PenyediaViewModel {
         // Initializer untuk Halaman 6 (Edit Pengunjung & Tambah Paket)
         initializer {
             EditPengunjungViewModel(
-                kiranaApp().container.kiranaRepository
+                savedStateHandle = this.createSavedStateHandle(),
+                pengunjungRepository = kiranaApp().container.kiranaRepository
             )
         }
 

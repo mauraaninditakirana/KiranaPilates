@@ -54,7 +54,13 @@ fun HalamanEditPengunjung(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Logika Tambah Paket hanya muncul untuk Member
+            OutlinedTextField(
+                value = viewModel.tipeInput,
+                onValueChange = { viewModel.tipeInput = it },
+                label = { Text("Tipe (Member/Guest)") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
             if (viewModel.tipeInput == "Member") {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -62,27 +68,30 @@ fun HalamanEditPengunjung(
                 ) {
                     Checkbox(
                         checked = viewModel.isTambahPaket,
-                        onCheckedChange = { isChecked ->
-                            viewModel.isTambahPaket = isChecked
-                        }
+                        onCheckedChange = { viewModel.isTambahPaket = it }
                     )
                     Text(text = "Tambah Paket (+10 Kuota)")
                 }
             }
 
-            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
                 Button(
                     onClick = { viewModel.updatePengunjung(token, onBack) },
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(stringResource(R.string.btn_simpan))
+                    Text("Simpan")
                 }
 
                 OutlinedButton(
                     onClick = onBack,
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(stringResource(R.string.btn_batal))
+                    Text("Batal")
                 }
             }
         }

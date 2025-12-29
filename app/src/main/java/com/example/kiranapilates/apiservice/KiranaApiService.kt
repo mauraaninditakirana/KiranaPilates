@@ -32,7 +32,7 @@ interface KiranaApiService {
     ): PengunjungResponse
 
     @FormUrlEncoded
-    @PUT("pengunjung/update.php")
+    @POST("pengunjung/update.php")
     suspend fun updatePengunjung(
         @Header("Authorization") token: String,
         @Field("id_pengunjung") id: Int,
