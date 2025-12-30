@@ -134,9 +134,13 @@ fun PetaNavigasi(
             })
         ) {
             HalamanSesiUpdate(
-                // 4. JANGAN PAKAI STRING HARDCODED, PAKAI TOKEN ASLI
                 token = tokenState,
-                onBack = { navController.popBackStack() }
+                onBack = {
+                    navController.navigate(DestinasiSesi.route){
+                    popUpTo(DestinasiSesi.route){
+                        inclusive = true
+                    }
+                } }
             )
         }
 
