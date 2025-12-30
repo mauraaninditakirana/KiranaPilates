@@ -99,6 +99,10 @@ fun PetaNavigasi(
             HalamanEditPengunjung(
                 token = tokenState,
                 onBack = {
+                    navController.navigate(DestinasiDaftarPengunjung.route) {
+                        // Hapus semua history sampai ke Dashboard agar bersih
+                        popUpTo(DestinasiDashboard.route) { inclusive = false }
+                    }
                     navController.navigate("${DestinasiDetailPengunjung.route}/$id") {
                         popUpTo(DestinasiDaftarPengunjung.route) {
                             inclusive = false

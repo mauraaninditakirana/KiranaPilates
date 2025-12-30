@@ -34,7 +34,6 @@ fun HalamanLogin(
 ) {
     val uiState = viewModel.loginUiState
 
-    // --- PALET WARNA TEMA PINK PASTEL ---
     val PinkBackground = Color(0xFFFCE4EC)
     val PinkPrimary = Color(0xFFF06292)
     val PinkBorder = Color(0xFFF48FB1)
@@ -47,8 +46,7 @@ fun HalamanLogin(
             viewModel.resetState()
         }
     }
-
-    // Container Utama
+    //container utama
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -57,10 +55,9 @@ fun HalamanLogin(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        // Spacer pendorong
         Spacer(modifier = Modifier.weight(1f))
 
-        // --- ILUSTRASI LOGO ---
+        // Logo
         Box(
             modifier = Modifier
                 .size(120.dp)
@@ -68,8 +65,6 @@ fun HalamanLogin(
                 .background(WhiteContainer),
             contentAlignment = Alignment.Center
         ) {
-            // SAYA GANTI JADI 'SPA' (Bunga Lotus)
-            // Ini simbol universal untuk Pilates/Yoga/Meditasi yang cantik & estetik
             Icon(
                 imageVector = Icons.Default.Spa,
                 contentDescription = null,
@@ -104,7 +99,7 @@ fun HalamanLogin(
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // --- INPUT USERNAME (Icon Orang) ---
+        // INPUT USERNAME
         OutlinedTextField(
             value = viewModel.usernameInput,
             onValueChange = { viewModel.usernameInput = it },
@@ -126,8 +121,6 @@ fun HalamanLogin(
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-
-        // --- INPUT PASSWORD (ADA ICON GEMBOK) ---
         OutlinedTextField(
             value = viewModel.passwordInput,
             onValueChange = { viewModel.passwordInput = it },
@@ -144,7 +137,6 @@ fun HalamanLogin(
                 focusedLabelColor = PinkPrimary,
             ),
             singleLine = true,
-            // TAMBAHAN ICON KUNCI (LOCK) DISINI
             leadingIcon = {
                 Icon(Icons.Default.Lock, contentDescription = null, tint = PinkPrimary)
             }
@@ -152,7 +144,7 @@ fun HalamanLogin(
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        // --- TOMBOL LOGIN ---
+        // TOMBOL LOGIN
         Button(
             onClick = { viewModel.login() },
             modifier = Modifier
