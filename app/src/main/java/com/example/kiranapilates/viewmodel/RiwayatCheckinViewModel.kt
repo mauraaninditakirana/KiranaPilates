@@ -11,45 +11,60 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RiwayatCheckinViewModel(private val checkinRepository: CheckinRepository) : ViewModel() {
+class RiwayatCheckinViewModel(
+    private val checkinRepository: CheckinRepository
+) : ViewModel() {
 
-    // Menyimpan seluruh data check-in dari server
-    private var allRiwayat by mutableStateOf<List<Checkin>>(emptyList())
+    // Data riwayat untuk ditampilkan di UI
+    var riwayatList by mutableStateOf<List<Checkin>>(emptyList())
+        private set
 
-    // Data yang sudah difilter untuk ditampilkan di UI
-    var filteredRiwayat by mutableStateOf<List<Checkin>>(emptyList())
+    // State untuk loading dan error
+    var isLoading by mutableStateOf(false)
+        private set
+
+    var errorMessage by mutableStateOf<String?>(null)
+        private set
 
     // State untuk filter
-    var selectedDate by mutableStateOf(getCurrentDate()) // Default: Hari ini
-    var selectedSesiId by mutableStateOf(0) // Diambil dari card yang diklik di Halaman 9
+    var selectedSesiId by mutableStateOf(0)
+        private set
 
-    init {
-        loadAllRiwayat()
-    }
+    var selectedDate by mutableStateOf(getCurrentDate())
+        private set
 
-    // Mengambil semua data riwayat dari backend
-    fun loadAllRiwayat() {
+    // Fungsi untuk load data dari backend
+    fun loadRiwayatCheckin() {
         viewModelScope.launch {
+            isLoading = true
+            errorMessage = null
+
             try {
-                // Asumsi repository memiliki fungsi getSemuaCheckin
-                // Jika belum, kita bisa gunakan filter di query SQL backend
-                // Namun untuk kodingan ini kita ambil dan filter di Kotlin
-                // val response = checkinRepository.getHistory()
-                // allRiwayat = response.data ?: emptyList()
-                filterData()
+                val response = checkinRepository.getRiwayatCheckin(
+                    idSesi = selectedSesiId,
+                    tanggal = selectedDate
+                )
+
+                if (response.status == "success") {
+                    riwayatList = response.data ?: emptyList()
+                } else {
+                    errorMessage = response.message
+                    riwayatList = emptyList()
+                }
             } catch (e: Exception) {
-                // Handle error
+                errorMessage = "Gagal memuat data: ${e.message}"
+                riwayatList = emptyList()
+            } finally {
+                isLoading = false
             }
         }
     }
 
-    // Logika Filter: Berdasarkan Tanggal DAN ID Sesi
-    fun filterData() {
-        filteredRiwayat = allRiwayat.filter { checkin ->
-            val isSameDate = checkin.tanggal_checkin.startsWith(selectedDate)
-            val isSameSesi = checkin.id_sesi == selectedSesiId
-            isSameDate && isSameSesi
-        }
+    // Fungsi untuk update filter dan reload data
+    fun updateFilter(sesiId: Int, tanggal: String) {
+        selectedSesiId = sesiId
+        selectedDate = tanggal
+        loadRiwayatCheckin()
     }
 
     // Fungsi pembantu untuk mendapatkan tanggal hari ini (yyyy-MM-dd)

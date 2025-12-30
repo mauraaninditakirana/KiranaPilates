@@ -11,6 +11,7 @@ interface AppContainer {
     val sesiRepository: SesiRepository
     val checkinRepository: CheckinRepository
     val authRepository: AuthRepository // Tambahan untuk Login/Logout
+
 }
 
 class ContainerApp : AppContainer {

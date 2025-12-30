@@ -1,10 +1,10 @@
 package com.example.kiranapilates.uicontroller
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue          // Import penting untuk state
-import androidx.compose.runtime.mutableStateOf  // Import penting untuk state
-import androidx.compose.runtime.remember        // Import penting untuk state
-import androidx.compose.runtime.setValue        // Import penting untuk state
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -18,11 +18,8 @@ import com.example.kiranapilates.view.*
 fun PetaNavigasi(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    // Token awal (bisa kosong jika belum login)
     token: String = ""
 ) {
-    // 1. STATE UNTUK MENYIMPAN TOKEN SELAMA APLIKASI BERJALAN
-    // Kita inisialisasi dengan parameter token (jika ada)
     var tokenState by remember { mutableStateOf(token) }
 
     NavHost(
@@ -34,10 +31,7 @@ fun PetaNavigasi(
         composable(route = DestinasiLogin.route) {
             HalamanLogin(
                 onLoginSuccess = { tokenBaru ->
-                    // 2. SAAT LOGIN SUKSES, SIMPAN TOKEN KE STATE
-                    // Token ini yang akan dipakai halaman lain
                     tokenState = tokenBaru
-
                     navController.navigate(DestinasiDashboard.route) {
                         popUpTo(DestinasiLogin.route) { inclusive = true }
                     }
@@ -52,7 +46,6 @@ fun PetaNavigasi(
                 onNavigateToSesi = { navController.navigate(DestinasiSesi.route) },
                 onNavigateToCheckin = { navController.navigate(DestinasiCheckin.route) },
                 onLogout = {
-                    // Reset token saat logout
                     tokenState = ""
                     navController.navigate(DestinasiLogin.route) {
                         popUpTo(DestinasiDashboard.route) { inclusive = true }
@@ -104,15 +97,14 @@ fun PetaNavigasi(
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getInt(DestinasiEditPengunjung.PENGUNJUNG_ID_ARG)
             HalamanEditPengunjung(
-                // 3. GUNAKAN TOKEN STATE YANG SUDAH TERISI SAAT LOGIN
                 token = tokenState,
                 onBack = {
-                    navController.navigate("${DestinasiDetailPengunjung.route}/$id"){
-                        popUpTo(DestinasiDaftarPengunjung.route){
+                    navController.navigate("${DestinasiDetailPengunjung.route}/$id") {
+                        popUpTo(DestinasiDaftarPengunjung.route) {
                             inclusive = false
                         }
                     }
-                     }
+                }
             )
         }
 
@@ -136,11 +128,12 @@ fun PetaNavigasi(
             HalamanSesiUpdate(
                 token = tokenState,
                 onBack = {
-                    navController.navigate(DestinasiSesi.route){
-                    popUpTo(DestinasiSesi.route){
-                        inclusive = true
+                    navController.navigate(DestinasiSesi.route) {
+                        popUpTo(DestinasiSesi.route) {
+                            inclusive = true
+                        }
                     }
-                } }
+                }
             )
         }
 
@@ -169,12 +162,17 @@ fun PetaNavigasi(
         composable(
             route = DestinasiRiwayatCheckin.routeWithArgs,
             arguments = listOf(
-                navArgument(DestinasiRiwayatCheckin.SESI_ID_ARG) { type = NavType.IntType },
-                navArgument(DestinasiRiwayatCheckin.TANGGAL_ARG) { type = NavType.StringType }
+                navArgument(DestinasiRiwayatCheckin.sesiIdArg) { type = NavType.IntType },
+                navArgument(DestinasiRiwayatCheckin.tanggalArg) { type = NavType.StringType }
             )
-        ) {
+        ) { backStackEntry ->
+            val sesiId = backStackEntry.arguments?.getInt(DestinasiRiwayatCheckin.sesiIdArg) ?: 0
+            val tanggal = backStackEntry.arguments?.getString(DestinasiRiwayatCheckin.tanggalArg) ?: ""
+
             HalamanRiwayatCheckin(
-                onBack = { navController.popBackStack() }
+                sesiId = sesiId,
+                tanggal = tanggal,
+                onBack = { navController.navigateUp() }
             )
         }
     }
