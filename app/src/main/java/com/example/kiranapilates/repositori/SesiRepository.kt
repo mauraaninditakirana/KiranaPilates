@@ -8,6 +8,7 @@ interface SesiRepository {
     suspend fun getSesi(): SesiResponse
     suspend fun updateSesi(token: String, id: Int, nama: String, jam: String, instruktur: String): SesiResponse
     suspend fun getSesiById(id: Int): SesiResponse
+    suspend fun getAllSesi(): SesiResponse
 }
 
 class OfflineSesiRepository(private val kiranaApiService: KiranaApiService) : SesiRepository {
@@ -16,4 +17,5 @@ class OfflineSesiRepository(private val kiranaApiService: KiranaApiService) : Se
         kiranaApiService.updateSesi(token, id, nama, jam, instruktur)
     override suspend fun getSesiById(id: Int): SesiResponse =
         kiranaApiService.getSesiById(id)
+    override suspend fun getAllSesi(): SesiResponse = kiranaApiService.getAllSesi()
 }
