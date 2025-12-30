@@ -27,14 +27,14 @@ fun HalamanDashboard(
     onNavigateToCheckin: () -> Unit,
     onLogout: () -> Unit
 ) {
-    // --- PALET WARNA TEMA (Sama dengan Login) ---
+    // PALET WARNA TEMA
     val PinkBackground = Color(0xFFFCE4EC)
-    val PinkPrimary = Color(0xFFF06292) // Warna tombol/icon
-    val PurpleText = Color(0xFF880E4F)  // Warna teks judul
-    val WhiteCard = Color(0xFFFFFFFF)   // Warna kartu biar bersih
+    val PinkPrimary = Color(0xFFF06292)
+    val PurpleText = Color(0xFF880E4F)
+    val WhiteCard = Color(0xFFFFFFFF)
 
     Scaffold(
-        // Background Scaffold disamakan agar seamless
+        // Background Scaffold
         containerColor = PinkBackground,
 
         topBar = {
@@ -42,24 +42,24 @@ fun HalamanDashboard(
                 title = {
                     Text(
                         stringResource(R.string.dashboard_title),
-                        style = MaterialTheme.typography.headlineMedium.copy( // Font lebih besar
+                        style = MaterialTheme.typography.headlineMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            color = PurpleText
+                            color = PinkBackground
                         )
                     )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = PinkBackground // Header nyatu dengan background
+                    containerColor = PurpleText // Header
                 )
             )
         },
-        // TOMBOL LOGOUT (Dipindah ke Kanan Bawah, Bulat)
+        // TOMBOL LOGOUT
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onLogout,
-                containerColor = PinkPrimary, // Warna Pink Fanta
-                contentColor = Color.White,   // Icon Putih
-                shape = RoundedCornerShape(50.dp) // Bulat penuh
+                containerColor = PinkPrimary,
+                contentColor = Color.White,   // Icon
+                shape = RoundedCornerShape(50.dp) // Bulat
             ) {
                 Icon(Icons.Default.ExitToApp, contentDescription = "Logout")
             }
@@ -72,7 +72,6 @@ fun HalamanDashboard(
                 .padding(24.dp), // Padding agak lega
             verticalArrangement = Arrangement.spacedBy(20.dp) // Jarak antar kartu lebih renggang
         ) {
-            // Teks "Admin bebas..." SUDAH DIHAPUS
 
             // MENU KARTU
             MenuCard(
@@ -117,10 +116,10 @@ fun MenuCard(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(110.dp) // Sedikit lebih tinggi biar cantik
+            .height(110.dp)
             .clickable(onClick = onClick),
-        elevation = CardDefaults.cardElevation(6.dp), // Bayangan agak tebal biar timbul
-        shape = RoundedCornerShape(24.dp), // Sudut membulat banget
+        elevation = CardDefaults.cardElevation(6.dp), // Bayangan
+        shape = RoundedCornerShape(24.dp), // Sudut membulat
         colors = CardDefaults.cardColors(containerColor = cardColor)
     ) {
         Row(
@@ -129,7 +128,7 @@ fun MenuCard(
                 .padding(24.dp), // Padding dalam kartu
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Icon Besar Pink
+            // Icon
             Icon(
                 imageVector = icon,
                 contentDescription = null,
@@ -139,7 +138,7 @@ fun MenuCard(
 
             Spacer(modifier = Modifier.width(24.dp))
 
-            // Teks Judul Ungu
+
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleLarge.copy(
