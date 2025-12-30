@@ -1,15 +1,19 @@
 package com.example.kiranapilates.view
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -28,58 +32,99 @@ fun HalamanCheckinForm(
     var showQuotaDialog by remember { mutableStateOf(false) }
     var lastPengunjungId by remember { mutableStateOf(0) }
 
+    // --- PALET WARNA TEMA ---
+    val PinkBackground = Color(0xFFFCE4EC)
+    val PinkPrimary = Color(0xFFF06292)
+    val PinkBorder = Color(0xFFF48FB1)
+    val PurpleText = Color(0xFF880E4F)
+    val WhiteContainer = Color(0xFFFFFFFF)
+
     // Memantau hasil checkin untuk menampilkan pesan
     LaunchedEffect(viewModel.checkinResult) {
         if (viewModel.checkinResult.isNotEmpty()) {
             Toast.makeText(context, viewModel.checkinResult, Toast.LENGTH_SHORT).show()
-            // Jika berhasil, reset pesan agar toast tidak muncul terus
             if (viewModel.checkinResult.contains("Berhasil", true)) {
-                viewModel.checkinResult = "" // Reset
+                viewModel.checkinResult = ""
             }
         }
     }
 
     Scaffold(
+        containerColor = PinkBackground, // Background utama Pink
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.tambah_checkin)) },
+                title = {
+                    Text(
+                        stringResource(R.string.tambah_checkin),
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                            color = PinkBackground
+                        )
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        Icon(
+                            Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            tint = PinkBackground
+                        )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = PurpleText
+                )
             )
         }
     ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(16.dp)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+                .padding(24.dp) // Padding agak lega
+                .fillMaxSize(), // Full size tapi button tidak dipaksa kebawah
+            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             // --- BAGIAN 1: DROPDOWN PENCARIAN NAMA ---
-            Text("Pilih Pengunjung:", style = MaterialTheme.typography.titleMedium)
+            Text(
+                "Pilih Pengunjung:",
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    color = PurpleText
+                )
+            )
 
             ExposedDropdownMenuBox(
                 expanded = viewModel.isDropdownExpanded,
                 onExpandedChange = { viewModel.isDropdownExpanded = !viewModel.isDropdownExpanded }
             ) {
+                // Input Pencarian (Bulat & Putih)
                 OutlinedTextField(
                     value = viewModel.searchQuery,
                     onValueChange = {
                         viewModel.searchQuery = it
                         viewModel.isDropdownExpanded = true
                     },
-                    label = { Text("Ketik Nama Pengunjung") },
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = viewModel.isDropdownExpanded) },
+                    label = { Text("Ketik Nama Pengunjung", color = PinkPrimary) },
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = viewModel.isDropdownExpanded)
+                    },
                     modifier = Modifier.fillMaxWidth().menuAnchor(),
-                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done)
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = WhiteContainer,
+                        unfocusedContainerColor = WhiteContainer,
+                        focusedBorderColor = PinkPrimary,
+                        unfocusedBorderColor = PinkBorder,
+                        cursorColor = PinkPrimary,
+                        focusedLabelColor = PinkPrimary,
+                    )
                 )
 
                 ExposedDropdownMenu(
                     expanded = viewModel.isDropdownExpanded,
-                    onDismissRequest = { viewModel.isDropdownExpanded = false }
+                    onDismissRequest = { viewModel.isDropdownExpanded = false },
+                    modifier = Modifier.background(WhiteContainer) // Menu background putih
                 ) {
                     if (viewModel.filteredPengunjung.isEmpty()) {
                         DropdownMenuItem(text = { Text("Tidak ditemukan") }, onClick = {})
@@ -88,8 +133,12 @@ fun HalamanCheckinForm(
                             DropdownMenuItem(
                                 text = {
                                     Column {
-                                        Text(pengunjung.nama_lengkap, style = MaterialTheme.typography.bodyLarge)
-                                        Text("Sisa Kuota: ${pengunjung.kuota_sisa} | ${pengunjung.tipe_pengunjung}", style = MaterialTheme.typography.bodySmall)
+                                        Text(pengunjung.nama_lengkap, style = MaterialTheme.typography.bodyLarge, color = PurpleText)
+                                        Text(
+                                            "Sisa Kuota: ${pengunjung.kuota_sisa} | ${pengunjung.tipe_pengunjung}",
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = PinkPrimary
+                                        )
                                     }
                                 },
                                 onClick = {
@@ -101,23 +150,37 @@ fun HalamanCheckinForm(
                 }
             }
 
-            // Tampilkan Detail Orang yang Dipilih (Opsional tapi membantu)
+            // Tampilkan Detail Orang yang Dipilih
             viewModel.selectedPengunjung?.let { selected ->
                 Card(
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = WhiteContainer),
+                    elevation = CardDefaults.cardElevation(2.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Column(modifier = Modifier.padding(12.dp)) {
-                        Text("Terpilih: ${selected.nama_lengkap}", style = MaterialTheme.typography.labelLarge)
-                        Text("No HP: ${selected.no_hp}")
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            "Terpilih: ${selected.nama_lengkap}",
+                            style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                            color = PurpleText
+                        )
+                        Text(
+                            "No HP: ${selected.no_hp}",
+                            color = Color.Gray
+                        )
                     }
                 }
             }
 
-
             // --- BAGIAN 2: PILIH SESI ---
-            Divider()
-            Text("Pilih Sesi:", style = MaterialTheme.typography.titleMedium)
+            Divider(color = PinkBorder.copy(alpha = 0.5f)) // Garis pemisah pink
+            Text(
+                "Pilih Sesi:",
+                style = MaterialTheme.typography.titleMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    color = PurpleText
+                )
+            )
 
             Column {
                 viewModel.listSesi.forEach { sesi ->
@@ -129,54 +192,85 @@ fun HalamanCheckinForm(
                     ) {
                         RadioButton(
                             selected = viewModel.selectedSesiId == sesi.id_sesi,
-                            onClick = { viewModel.selectedSesiId = sesi.id_sesi }
+                            onClick = { viewModel.selectedSesiId = sesi.id_sesi },
+                            colors = RadioButtonDefaults.colors(
+                                selectedColor = PinkPrimary,
+                                unselectedColor = PinkBorder
+                            )
                         )
                         Column {
-                            Text(text = sesi.nama_sesi, style = MaterialTheme.typography.bodyLarge)
-                            Text(text = "${sesi.jam_operasional} - ${sesi.nama_instruktur}", style = MaterialTheme.typography.bodySmall)
+                            Text(
+                                text = sesi.nama_sesi,
+                                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
+                                color = PurpleText
+                            )
+                            Text(
+                                text = "${sesi.jam_operasional} - ${sesi.nama_instruktur}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = PinkPrimary
+                            )
                         }
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            // SAYA HAPUS Spacer(modifier = Modifier.weight(1f)) AGAR BUTTON TIDAK DI BAWAH SEKALI
+            Spacer(modifier = Modifier.height(24.dp))
 
-            // --- BAGIAN 3: TOMBOL SUBMIT ---
+            // --- BAGIAN 3: TOMBOL SUBMIT (Pink & Bulat) ---
             Button(
                 onClick = {
                     viewModel.submitCheckin(
-                        onSuccess = {
-                            // Navigasi onBack akan dipanggil setelah Toast muncul (lihat logic di atas/bawah)
-                            onBack()
-                        },
+                        onSuccess = { onBack() },
                         onQuotaEmpty = { id ->
                             lastPengunjungId = id
                             showQuotaDialog = true
                         }
                     )
                 },
-                modifier = Modifier.fillMaxWidth(),
-                enabled = viewModel.selectedPengunjungId != null && viewModel.selectedSesiId != null
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                enabled = viewModel.selectedPengunjungId != null && viewModel.selectedSesiId != null,
+                shape = RoundedCornerShape(50.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = PinkPrimary,
+                    contentColor = Color.White,
+                    disabledContainerColor = PinkBorder.copy(alpha = 0.5f)
+                )
             ) {
-                Text("Check-in Sekarang")
+                Text(
+                    "Check-in Sekarang",
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.titleMedium
+                )
             }
         }
     }
 
-    // --- DIALOG KUOTA HABIS ---
+    // --- DIALOG KUOTA HABIS (Themed) ---
     if (showQuotaDialog) {
         AlertDialog(
             onDismissRequest = { showQuotaDialog = false },
-            title = { Text("Kuota Habis!") },
-            text = { Text("Member ini kehabisan kuota. Mau edit data untuk tambah paket?") },
+            containerColor = WhiteContainer,
+            title = {
+                Text("Kuota Habis!", color = PurpleText, fontWeight = FontWeight.Bold)
+            },
+            text = {
+                Text("Member ini kehabisan kuota. Mau edit data untuk tambah paket?", color = PurpleText)
+            },
             confirmButton = {
                 TextButton(onClick = {
                     showQuotaDialog = false
                     onEditPengunjung(lastPengunjungId)
-                }) { Text("Ya, Edit") }
+                }) {
+                    Text("Ya, Edit", color = PinkPrimary, fontWeight = FontWeight.Bold)
+                }
             },
             dismissButton = {
-                TextButton(onClick = { showQuotaDialog = false }) { Text("Batal") }
+                TextButton(onClick = { showQuotaDialog = false }) {
+                    Text("Batal", color = Color.Gray)
+                }
             }
         )
     }
