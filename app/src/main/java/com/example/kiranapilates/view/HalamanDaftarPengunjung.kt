@@ -80,14 +80,19 @@ fun HalamanDaftarPengunjung(
             }
         }
     ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
-            //KOLOM PENCARIAN
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+        ) {
+
+            // 2. SEARCH BAR
             OutlinedTextField(
                 value = viewModel.searchQuery,
                 onValueChange = { viewModel.onSearchQueryChange(it) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(16.dp), // Padding luar search bar
                 placeholder = { Text(stringResource(R.string.search_hint), color = Color.Gray) },
                 leadingIcon = {
                     Icon(
@@ -96,7 +101,7 @@ fun HalamanDaftarPengunjung(
                         tint = PinkPrimary
                     )
                 },
-                shape = RoundedCornerShape(25.dp), // Sudut sangat bulat
+                shape = RoundedCornerShape(25.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = WhiteContainer,
                     unfocusedContainerColor = WhiteContainer,
@@ -106,10 +111,13 @@ fun HalamanDaftarPengunjung(
                 )
             )
 
+            // 3. DAFTAR PENGUNJUNG
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp) // Jarak antar kartu
+                modifier = Modifier
+                    .fillMaxSize(), // Mengambil sisa ruang ke bawah
+                // contentPadding agar item terbawah tidak tertutup FAB (+80dp)
+                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 80.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 items(viewModel.filteredPengunjung) { pengunjung ->
                     ItemPengunjungCard(pengunjung, onDetailClick)
