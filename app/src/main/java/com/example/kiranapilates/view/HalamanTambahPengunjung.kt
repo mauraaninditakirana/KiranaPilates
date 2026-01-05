@@ -157,15 +157,22 @@ fun HalamanTambahPengunjung(
             // TOMBOL SIMPAN
             Button(
                 onClick = {
-                    viewModel.simpanPengunjung(
-                        onSuccess = {
-                            Toast.makeText(context, context.getString(R.string.sukses_tambah), Toast.LENGTH_SHORT).show()
-                            onSuccess()
-                        },
-                        onError = { msg ->
-                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                    // Cek apakah nama atau no hp kosong (atau cuma spasi)
+                    if (viewModel.namaInput.isBlank() || viewModel.noHpInput.isBlank()) {
+                        // Jika kosong, tampilkan pesan error
+                        Toast.makeText(context, "Nama dan Nomor HP wajib diisi!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // Jika terisi, baru jalankan proses simpan
+                        viewModel.simpanPengunjung(
+                            onSuccess = {
+                                Toast.makeText(context, context.getString(R.string.sukses_tambah), Toast.LENGTH_SHORT).show()
+                                onSuccess()
+                            },
+                            onError = { msg ->
+                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
