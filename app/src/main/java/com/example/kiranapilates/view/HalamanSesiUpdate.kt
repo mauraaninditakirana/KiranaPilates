@@ -1,5 +1,6 @@
 package com.example.kiranapilates.view
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,6 +11,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,6 +27,7 @@ fun HalamanSesiUpdate(
     onBack: () -> Unit,
     viewModel: SesiUpdateViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
+    val context = LocalContext.current
     // --- PALET WARNA TEMA ---
     val PinkBackground = Color(0xFFFCE4EC)
     val PinkPrimary = Color(0xFFF06292)
@@ -119,7 +122,20 @@ fun HalamanSesiUpdate(
             ) {
                 // Tombol Simpan (Pink Penuh)
                 Button(
-                    onClick = { viewModel.updateSesi(token, onBack) },
+                    onClick = {
+                        // 4. Cek Validasi: Apakah Jam atau Instruktur kosong?
+                        if (viewModel.jamInput.isBlank() || viewModel.instrukturInput.isBlank()) {
+                            // Jika kosong, tampilkan pesan error
+                            Toast.makeText(context, "Jam dan Instruktur wajib diisi!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            // Jika terisi, jalankan proses update
+                            viewModel.updateSesi(token) {
+                                // Callback Sukses: Munculkan pesan dan kembali
+                                Toast.makeText(context, "Sesi berhasil diupdate!", Toast.LENGTH_SHORT).show()
+                                onBack()
+                            }
+                        }
+                    },
                     modifier = Modifier
                         .weight(1f)
                         .height(50.dp),
