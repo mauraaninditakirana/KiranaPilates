@@ -1,5 +1,6 @@
 package com.example.kiranapilates.view
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -27,6 +29,7 @@ fun HalamanDashboard(
     onNavigateToCheckin: () -> Unit,
     onLogout: () -> Unit
 ) {
+    val context = LocalContext.current
     // PALET WARNA TEMA
     val PinkBackground = Color(0xFFFCE4EC)
     val PinkPrimary = Color(0xFFF06292)
@@ -56,7 +59,10 @@ fun HalamanDashboard(
         // TOMBOL LOGOUT
         floatingActionButton = {
             FloatingActionButton(
-                onClick = onLogout,
+                onClick = {
+                    Toast.makeText(context, "Logout Berhasil", Toast.LENGTH_SHORT).show()
+                    onLogout()
+                },
                 containerColor = PinkPrimary,
                 contentColor = Color.White,   // Icon
                 shape = RoundedCornerShape(50.dp) // Bulat
@@ -69,8 +75,8 @@ fun HalamanDashboard(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
-                .padding(24.dp), // Padding agak lega
-            verticalArrangement = Arrangement.spacedBy(20.dp) // Jarak antar kartu lebih renggang
+                .padding(24.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp) // Jarak antar kartu
         ) {
 
             // MENU KARTU

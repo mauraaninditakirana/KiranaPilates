@@ -1,5 +1,6 @@
 package com.example.kiranapilates.view
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -32,6 +34,7 @@ fun HalamanLogin(
     onLoginSuccess: (String) -> Unit,
     viewModel: LoginViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
+    val context = LocalContext.current
     val uiState = viewModel.loginUiState
 
     val PinkBackground = Color(0xFFFCE4EC)
@@ -42,6 +45,7 @@ fun HalamanLogin(
 
     LaunchedEffect(uiState) {
         if (uiState is LoginUiState.Success) {
+            Toast.makeText(context, "Login Berhasil!", Toast.LENGTH_SHORT).show()
             onLoginSuccess(uiState.token)
             viewModel.resetState()
         }
