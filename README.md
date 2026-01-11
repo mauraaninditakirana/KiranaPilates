@@ -25,13 +25,13 @@ Login :
 Logout : 
 1. Klik halaman logout pada dashboard.
 
-### Dashboard Utama
+### 2. Dashboard Utama
 1. Pilih menu Registrasi Pengunjung untuk mengelola data member.
 2. Pilih menu Sesi untuk mengatur jadwal kelas.
 3. Pilih menu Check-In untuk melakukan presensi harian.
 4. Tekan tombol ikon Keluar di pojok kanan bawah untuk logout.
 
-### Manajemen Pengunjung
+### 3. Manajemen Pengunjung
 Jika memilih card 1
 1. Melihat Daftar Pengunjung
    - Pilih menu Daftar Pengunjung.
@@ -61,14 +61,14 @@ Jika memilih card 1
         - Validasi: Apakah yakin akan menghapus pengunjung, jika ya, maka terhapus, dan jika tidak maka batal.
    - Pilih "Ya" untuk menghapus pengunjung, dan akan tampil notif "Data berhasil dihapus".
 
-### Manajemen Sesi
+### 4. Manajemen Sesi
 Jika memilih card 2
 1. Terdapat 3 card tetap sesi.
 2. klik salah satu sesi yang ingin diedit (jam/instruktur).
    - Jika tidak diisi maka muncul notifikasi "Jam dan Instruktur wajib diisi".
 3. Klik simpan untuk menyimpan perubahan, dan akan tampil notifikasi "Sesi berhasil diupdate".
    
-### Manajemen Checkin
+### 5. Manajemen Checkin
 Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelum masuk ruangan pilates).
 1. Pilih menu Check-In dari Dashboard.
 2. Terdapat Halaman Checkin dengan pilihan card sesi, fitur tanggal, dan tombol + dikanan bawah.
