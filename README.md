@@ -20,6 +20,7 @@ Login :
 1. Buka aplikasi.
 2. Login dengan username dan password.
 3. Klik tombol Login untuk masuk ke dashboard.
+   - Catatan: Jika username/password salah, akan muncul pesan peringatan.
 
 Logout : 
 1. Klik halaman logout pada dashboard.
@@ -29,6 +30,42 @@ Logout :
 2. Pilih menu Sesi untuk mengatur jadwal kelas.
 3. Pilih menu Check-In untuk melakukan presensi harian.
 4. Tekan tombol ikon Keluar di pojok kanan bawah untuk logout.
+
+### Manajemen Pengunjung
+jika memilih card 1
+A. Melihat Daftar Pengunjung
+    1. Pilih menu Daftar Pengunjung.
+    2. Akan muncul daftar nama pengunjung beserta statusnya (Member atau Guest).
+    3. Gunakan Kolom Pencarian di bagian atas untuk mencari nama tertentu dengan cepat.
+B. Menambah Pengunjung Baru
+    1. Di halaman Daftar Pengunjung, tekan tombol Tambah (+) di pojok kanan bawah.
+    2. Anda akan masuk ke form Tambah Pengunjung.
+    3. Isi data berikut:
+        - Nama Lengkap: (Wajib diisi)
+        - Nomor HP: (Wajib diisi)
+        - Tipe Pengunjung: Pilih "Member" atau "Guest".
+    4. Tekan tombol "Simpan".
+        - Validasi: Jika ada kolom yang kosong, sistem akan menolak dan meminta Anda melengkapinya.
+    5. Jika berhasil, akan muncul notifikasi "Data Berhasil Disimpan" dan Anda kembali ke daftar pengunjung.
+C. Edit Pengunjung
+    1. Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
+    2. Anda akan masuk ke halaman Detail Pengunjung.
+    3. Pilih tombol "edit", kemudian akan masuk ke form Edit Pengunjung.
+    3. Edit data yang diinginkan (nama/nomor hp/tipe pengunjung).
+    4. Tekan tombol "Simpan".
+    5. Kemudian akan kembali ke halaman Detail Pengunjung disertai notifikasi "data berhasil diupdate".
+D. Hapus Pengunjung
+    1. Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
+    2. Anda akan masuk ke form Detail Pengunjung.
+    3. Klik tomnol "Hapus"
+        - Validasi: Apakah yakin akan menghapus pengunjung, jika ya, maka terhapus, dan jika tidak maka batal.
+    4. Pilih "Ya" untuk menghapus pengunjung, dan akan tampil notif "Data berhasil dihapus".
+
+### Manajemen Sesi
+Jika memilih card 2
+1. Terdapat 3 card tetap sesi
+2. klik salah satu sesi yang ingin diedit (jam/instruktur)
+    - Jika tidak ada instruktur maka "intruktur belum diatur"
 
 
 ## Technical Documentation
@@ -89,7 +126,7 @@ Logout :
 ### Langkah-langkah
 1.  **Clone Repository**
     ```bash
-    git clone [https://github.com/username-kamu/KiranaPilates.git](https://github.com/username-kamu/KiranaPilates.git)
+    git clone [https://github.com/mauraaninditakirana/KiranaPilates.git]
     ```
 2.  Setup Backend
     - Copy folder backend ke dalam htdocs di XAMPP atau di www jika menggunakan Laragon.
