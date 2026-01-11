@@ -1,5 +1,6 @@
 package com.example.kiranapilates.view
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +10,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -24,6 +26,7 @@ fun HalamanDetailPengunjung(
     onBack: () -> Unit,
     viewModel: DetailPengunjungViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
+    val context = LocalContext.current
     val pengunjung = viewModel.pengunjungDetail
     var showDeleteDialog by remember { mutableStateOf(false) }
 
@@ -140,11 +143,17 @@ fun HalamanDetailPengunjung(
                     fontWeight = FontWeight.Bold
                 )
             },
-            containerColor = WhiteCard, // Background Dialog Putih
+            containerColor = WhiteCard,
             confirmButton = {
                 TextButton(onClick = {
-                    // LOGIKA TETAP SAMA
-                    viewModel.deletePengunjung(onSuccess = onBack)
+                    // PANGGIL FUNGSI DELETE DENGAN CALLBACK
+                    viewModel.deletePengunjung(onSuccess = {
+                        // 1. Munculkan Toast
+                        Toast.makeText(context, "Data berhasil dihapus", Toast.LENGTH_SHORT).show()
+
+                        // 2. Kembali ke halaman sebelumnya
+                        onBack()
+                    })
                     showDeleteDialog = false
                 }) {
                     Text("Ya", color = Color.Red, fontWeight = FontWeight.Bold)
