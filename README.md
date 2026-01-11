@@ -25,48 +25,64 @@ Login :
 Logout : 
 1. Klik halaman logout pada dashboard.
 
-### Dashboard Utama
+### 2. Dashboard Utama
 1. Pilih menu Registrasi Pengunjung untuk mengelola data member.
 2. Pilih menu Sesi untuk mengatur jadwal kelas.
 3. Pilih menu Check-In untuk melakukan presensi harian.
 4. Tekan tombol ikon Keluar di pojok kanan bawah untuk logout.
 
-### Manajemen Pengunjung
-jika memilih card 1
-A. Melihat Daftar Pengunjung
-    1. Pilih menu Daftar Pengunjung.
-    2. Akan muncul daftar nama pengunjung beserta statusnya (Member atau Guest).
-    3. Gunakan Kolom Pencarian di bagian atas untuk mencari nama tertentu dengan cepat.
-B. Menambah Pengunjung Baru
-    1. Di halaman Daftar Pengunjung, tekan tombol Tambah (+) di pojok kanan bawah.
-    2. Anda akan masuk ke form Tambah Pengunjung.
-    3. Isi data berikut:
+### 3. Manajemen Pengunjung
+Jika memilih card 1
+1. Melihat Daftar Pengunjung
+   - Pilih menu Daftar Pengunjung.
+   - Akan muncul daftar nama pengunjung beserta statusnya (Member atau Guest).
+   - Gunakan Kolom Pencarian di bagian atas untuk mencari nama tertentu dengan cepat.
+3. Menambah Pengunjung Baru
+   - Di halaman Daftar Pengunjung, tekan tombol Tambah (+) di pojok kanan bawah.
+   - Anda akan masuk ke form Tambah Pengunjung.
+   - Isi data berikut:
         - Nama Lengkap: (Wajib diisi)
         - Nomor HP: (Wajib diisi)
         - Tipe Pengunjung: Pilih "Member" atau "Guest".
-    4. Tekan tombol "Simpan".
+   - Tekan tombol "Simpan".
         - Validasi: Jika ada kolom yang kosong, sistem akan menolak dan meminta Anda melengkapinya.
-    5. Jika berhasil, akan muncul notifikasi "Data Berhasil Disimpan" dan Anda kembali ke daftar pengunjung.
-C. Edit Pengunjung
-    1. Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
-    2. Anda akan masuk ke halaman Detail Pengunjung.
-    3. Pilih tombol "edit", kemudian akan masuk ke form Edit Pengunjung.
-    3. Edit data yang diinginkan (nama/nomor hp/tipe pengunjung).
-    4. Tekan tombol "Simpan".
-    5. Kemudian akan kembali ke halaman Detail Pengunjung disertai notifikasi "data berhasil diupdate".
-D. Hapus Pengunjung
-    1. Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
-    2. Anda akan masuk ke form Detail Pengunjung.
-    3. Klik tomnol "Hapus"
+   - Jika berhasil, akan muncul notifikasi "Data Berhasil Disimpan" dan Anda kembali ke daftar pengunjung.
+5. Edit Pengunjung
+   - Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
+   - Anda akan masuk ke halaman Detail Pengunjung.
+   - Pilih tombol "edit", kemudian akan masuk ke form Edit Pengunjung.
+   - Edit data yang diinginkan (nama/nomor hp/tipe pengunjung).
+   - Tekan tombol "Simpan".
+   - Kemudian akan kembali ke halaman Detail Pengunjung disertai notifikasi "data berhasil diupdate".
+7. Hapus Pengunjung
+   - Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
+   - Anda akan masuk ke form Detail Pengunjung.
+   - Klik tombol "Hapus".
         - Validasi: Apakah yakin akan menghapus pengunjung, jika ya, maka terhapus, dan jika tidak maka batal.
-    4. Pilih "Ya" untuk menghapus pengunjung, dan akan tampil notif "Data berhasil dihapus".
+   - Pilih "Ya" untuk menghapus pengunjung, dan akan tampil notif "Data berhasil dihapus".
 
-### Manajemen Sesi
+### 4. Manajemen Sesi
 Jika memilih card 2
-1. Terdapat 3 card tetap sesi
-2. klik salah satu sesi yang ingin diedit (jam/instruktur)
-    - Jika tidak ada instruktur maka "intruktur belum diatur"
-
+1. Terdapat 3 card tetap sesi.
+2. klik salah satu sesi yang ingin diedit (jam/instruktur).
+   - Jika tidak diisi maka muncul notifikasi "Jam dan Instruktur wajib diisi".
+3. Klik simpan untuk menyimpan perubahan, dan akan tampil notifikasi "Sesi berhasil diupdate".
+   
+### 5. Manajemen Checkin
+Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelum masuk ruangan pilates).
+1. Pilih menu Check-In dari Dashboard.
+2. Terdapat Halaman Checkin dengan pilihan card sesi, fitur tanggal, dan tombol + dikanan bawah.
+3. Untuk Tambah Checkin.
+   - Klik +.
+   - akan masuk ke halaman form checkin.
+   - Pilih Pengunjung: Cari nama pengunjung dari daftar dropdown (dapat diketik untuk meminimalkan waktu pencarian dengan scroll).
+   - Pilih Sesi saat itu juga (karena kita input checkin sebelum memasuki ruangan jadi sesi sudah pasti).
+   - Klik tombol "Check-in Sekarang".
+   - Akan kembali ke halaman Checkin disertai notifikasi "checkin berhasil", dan dapat di check pada detail sesi sesuai tanggal hari ini.
+4. Untuk Lihat Detail Data Check-in Pada Hari Itu.
+   - Pada halaman checkin, Pilih tanggal yang diinginkan.
+   - Pilih dan klik card yang ingin dilihat.
+   -  Akan tampil data pengunjung yang checkin pada sesi tersebut sesuai dengan tanggal yang diatur. 
 
 ## Technical Documentation
 ### Entity Relationship Diagram (ERD)
