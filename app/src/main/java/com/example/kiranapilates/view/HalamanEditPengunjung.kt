@@ -1,5 +1,6 @@
 package com.example.kiranapilates.view
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,6 +27,7 @@ fun HalamanEditPengunjung(
     onBack: () -> Unit,
     viewModel: EditPengunjungViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
+    val context = LocalContext.current
     // --- PALET WARNA TEMA ---
     val PinkBackground = Color(0xFFFCE4EC)
     val PinkPrimary = Color(0xFFF06292)
@@ -149,14 +152,22 @@ fun HalamanEditPengunjung(
                 // --- TOMBOL SIMPAN (Pink Penuh) ---
                 Button(
                     onClick = {
-                        // LOGIKA ASLI (JANGAN DIUBAH)
+
                         println("DEBUG TOKEN DI EDIT: '$token'")
 
                         if (token.isNotEmpty()) {
-                            println("DEBUG: Mengirim request update...")
-                            viewModel.updatePengunjung(token, onBack)
+                            // Panggil viewModel update
+                            // Parameter kedua adalah callback (apa yang dilakukan setelah sukses)
+                            viewModel.updatePengunjung(token) {
+
+                                // 1. Tampilkan Pesan Sukses
+                                Toast.makeText(context, "Data berhasil diupdate!", Toast.LENGTH_SHORT).show()
+
+                                // 2. Baru kembali ke halaman sebelumnya
+                                onBack()
+                            }
                         } else {
-                            println("ERROR: Token kosong! Update dibatalkan.")
+                            Toast.makeText(context, "Token error!", Toast.LENGTH_SHORT).show()
                         }
                     },
                     modifier = Modifier
