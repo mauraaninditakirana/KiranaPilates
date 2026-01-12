@@ -1,6 +1,7 @@
 package com.example.kiranapilates.view
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -15,7 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -64,16 +67,16 @@ fun HalamanLogin(
         // Logo
         Box(
             modifier = Modifier
-                .size(120.dp)
+                .size(150.dp)
                 .clip(CircleShape)
                 .background(WhiteContainer),
             contentAlignment = Alignment.Center
         ) {
-            Icon(
-                imageVector = Icons.Default.Spa,
-                contentDescription = null,
-                modifier = Modifier.size(70.dp),
-                tint = PinkPrimary
+            Image(
+                painter = painterResource(id = R.drawable.kirana_logo),
+                contentDescription = "Logo Kirana Pilates",
+                modifier = Modifier.fillMaxSize(), // Gambar memenuhi lingkaran
+                contentScale = ContentScale.Crop // Memastikan gambar terpotong rapi mengisi lingkaran
             )
         }
 
