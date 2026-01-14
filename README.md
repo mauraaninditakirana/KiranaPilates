@@ -66,9 +66,9 @@ Jika memilih card 1
         - Validasi: Jika ada kolom yang kosong, sistem akan menolak dan meminta Anda melengkapinya.
    - Jika berhasil, akan muncul notifikasi "Data Berhasil Disimpan" dan Anda kembali ke daftar pengunjung.
 
-|            daftar (sebelum tambah pengunjung)            |    setelah klik +, masuk form, tambah data guest    |  setelah tambah tipe guest, notifikasi berhasil   |           mencoba tambah data tipe member            |          mencoba tambah data tipe member           |
-|:--------------------------------------------------------:|:---------------------------------------------------:|:-------------------------------------------------:|:----------------------------------------------------:|:--------------------------------------------------:|
-| <img src="screenshots/daftarpengunjung.png" width="250"> | <img src="screenshots/tambahguest.png" width="250"> | <img src="screenshots/bisaguest.png" width="250"> | <img src="screenshots/tambahmember.png" width="250"> | <img src="screenshots/bisamember.png" width="250"> |
+|           daftar (sebelum tambah pengunjung)           |      setelah klik +, masuk form tambah data       | berhasil tambah tipe guest, notifikasi berhasil |              coba tambah,tipe member               |             berhasil data tipe member            |
+|:------------------------------------------------------:|:-------------------------------------------------:|:-----------------------------------------------:|:--------------------------------------------------:|:------------------------------------------------:|
+|<img src="screenshots/daftarpengunjung.png" width="250">|<img src="screenshots/tambahguest.png" width="250">|<img src="screenshots/bisaguest.png" width="250">|<img src="screenshots/tambahmember.png" width="250">|<img src="screenshots/bisamember.png" width="250">|
 
 |        cek validasi jika tidak diisi nama         |       cek validasi jika tidak diisi nomor hp       |
 |:-------------------------------------------------:|:--------------------------------------------------:|
@@ -84,9 +84,9 @@ Jika memilih card 1
      - Catatan: terdapat perbedaan pada detail, jika member maka ada sisa kuota, dan guest tidak ada.
 
 
-|   pada halaman ini, pilih dan klik pengunjung    |              masuk ke detail, pilih edit              |    edit data, contoh ubah dari member->guest     | data berhasil edit, terdapat notif, detail berubah tidak ada sisa kuota |
-|:------------------------------------------------:|:-----------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------------------------------------:|
-|<img src="screenshots/bisamember.png" width="250">| <img src="screenshots/detailmauedit.png" width="250"> | <img src="screenshots/editdata.png" width="250"> |          <img src="screenshots/berhasiledit.png" width="250">           |  
+|   pada halaman ini, pilih dan klik pengunjung    |             masuk ke detail, pilih edit             |       edit data, ubah dari member->guest       |berhasil, terdapat notif, detail berubah tidak ada sisa kuota|
+|:------------------------------------------------:|:---------------------------------------------------:|:----------------------------------------------:|:-----------------------------------------------------------:|
+|<img src="screenshots/bisamember.png" width="250">|<img src="screenshots/detailmauedit.png" width="250">|<img src="screenshots/editdata.png" width="250">|    <img src="screenshots/berhasiledit.png" width="250">     |  
 
 
 7. Hapus Pengunjung
