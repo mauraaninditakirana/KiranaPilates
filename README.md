@@ -51,9 +51,9 @@ Jika memilih card 1
    - Akan muncul daftar nama pengunjung beserta statusnya (Member atau Guest).
    - Gunakan Kolom Pencarian di bagian atas untuk mencari nama tertentu dengan cepat.
 
-|     pada dashboard, pilih "Registrasi Pengunjung"     |            setelah klik Registrasi pengunjung            |
-|:----------------------------------------------------:|:--------------------------------------------------------:|
-| <img src="screenshots/setelahlogin.png" width="250"> | <img src="screenshots/daftarpengunjung.png" width="250"> |
+| pada dashboard, pilih "Registrasi Pengunjung" |            setelah klik Registrasi pengunjung            |
+|:---------------------------------------------:|:--------------------------------------------------------:|
+| <img src="screenshots/dash.png" width="250">  | <img src="screenshots/daftarpengunjung.png" width="250"> |
 
 3. Menambah Pengunjung Baru
    - Di halaman Daftar Pengunjung, tekan tombol Tambah (+) di pojok kanan bawah.
@@ -109,9 +109,9 @@ Jika memilih card 2
    - Jika tidak diisi maka muncul notifikasi "Jam dan Instruktur wajib diisi".
 3. Klik simpan untuk menyimpan perubahan, dan akan tampil notifikasi "Sesi berhasil diupdate".
 
-|                     pilih sesi                     |       pilih yang mau diedit,klik pensil       |         form edit, validasi wajib diisi          |           berhasil edit, terdapat notif            |
-|:--------------------------------------------------:|:---------------------------------------------:|:------------------------------------------------:|:--------------------------------------------------:|
-|<img src="screenshots/setelahlogin.png" width="250">|<img src="screenshots/sesiaja.png" width="250">| <img src="screenshots/wajibisi.png" width="250"> | <img src="screenshots/sesiupdate.png" width="250"> |  
+|                  pilih sesi                  |       pilih yang mau diedit,klik pensil       |         form edit, validasi wajib diisi          |           berhasil edit, terdapat notif            |
+|:--------------------------------------------:|:---------------------------------------------:|:------------------------------------------------:|:--------------------------------------------------:|
+| <img src="screenshots/dash.png" width="250"> |<img src="screenshots/sesiaja.png" width="250">| <img src="screenshots/wajibisi.png" width="250"> | <img src="screenshots/sesiupdate.png" width="250"> |  
 
    
 ### 5. Manajemen Checkin
@@ -126,9 +126,9 @@ Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelu
    - Klik tombol "Check-in Sekarang".
    - Akan kembali ke halaman Checkin disertai notifikasi "checkin berhasil", dan dapat di check pada detail sesi sesuai tanggal hari ini.
 
-|                    pilih checkin                     |                      Klik +                       |        form checkin,dropdown&fitur search        |           berhasil edit, terdapat notif           |
-|:----------------------------------------------------:|:-------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------:|
-| <img src="screenshots/setelahlogin.png" width="250"> |<img src="screenshots/tambahcheck.png" width="250">| <img src="screenshots/maucheck.png" width="250"> | <img src="screenshots/bisacheck.png" width="250"> |  
+|                pilih checkin                 |                      Klik +                       |        form checkin,dropdown&fitur search        |           berhasil edit, terdapat notif           |
+|:--------------------------------------------:|:-------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/dash.png" width="250"> |<img src="screenshots/tambahcheck.png" width="250">| <img src="screenshots/maucheck.png" width="250"> | <img src="screenshots/bisacheck.png" width="250"> |  
 
 |               cek total kunjungan +1               |
 |:--------------------------------------------------:|
@@ -145,15 +145,15 @@ Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelu
    - Pilih dan klik card yang ingin dilihat.
    -  Akan tampil data pengunjung yang checkin pada sesi tersebut sesuai dengan tanggal yang diatur. 
 
-|                    pilih checkin                     |           Sesuai tanggal yang diinginkan            | klik yang mau dilihat, muncul data sesuai tanggal |
-|:----------------------------------------------------:|:---------------------------------------------------:|:-------------------------------------------------:|
-| <img src="screenshots/setelahlogin.png" width="250"> | <img src="screenshots/tambahcheck.png" width="250"> |  <img src="screenshots/conpagi.png" width="250">  |
+|                pilih checkin                 |           Sesuai tanggal yang diinginkan            | klik yang mau dilihat, muncul data sesuai tanggal |
+|:--------------------------------------------:|:---------------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/dash.png" width="250"> | <img src="screenshots/tambahcheck.png" width="250"> |  <img src="screenshots/conpagi.png" width="250">  |
 
 - COntoh jika tanggal dipilih
 
-|                    pilih checkin                     |         Sesuai tanggal yang diinginkan          | klik yang mau dilihat, muncul data sesuai tanggal |
-|:----------------------------------------------------:|:-----------------------------------------------:|:-------------------------------------------------:|
-| <img src="screenshots/setelahlogin.png" width="250"> | <img src="screenshots/tangpil.png" width="250"> |  <img src="screenshots/piltang.png" width="250">  |
+|                pilih checkin                 |         Sesuai tanggal yang diinginkan          | klik yang mau dilihat, muncul data sesuai tanggal |
+|:--------------------------------------------:|:-----------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/dash.png" width="250"> | <img src="screenshots/tangpil.png" width="250"> |  <img src="screenshots/piltang.png" width="250">  |
 
 
 ## Technical Documentation
