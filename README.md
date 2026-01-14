@@ -51,7 +51,7 @@ Jika memilih card 1
    - Akan muncul daftar nama pengunjung beserta statusnya (Member atau Guest).
    - Gunakan Kolom Pencarian di bagian atas untuk mencari nama tertentu dengan cepat.
 
-|                    pada dashboard                    |            setelah klik Registrasi pengunjung            |
+|     pada dashboard, pilih "Registrasi Pengunjung"     |            setelah klik Registrasi pengunjung            |
 |:----------------------------------------------------:|:--------------------------------------------------------:|
 | <img src="screenshots/setelahlogin.png" width="250"> | <img src="screenshots/daftarpengunjung.png" width="250"> |
 
@@ -81,6 +81,14 @@ Jika memilih card 1
    - Edit data yang diinginkan (nama/nomor hp/tipe pengunjung).
    - Tekan tombol "Simpan".
    - Kemudian akan kembali ke halaman Detail Pengunjung disertai notifikasi "data berhasil diupdate".
+   - Catatan: terdapat perbedaan pada detail, jika member maka ada sisa kuota, dan guest tidak ada.
+
+
+|         pada halaman ini, pilih dan klik pengunjung          |              masuk ke detail, pilih edit              |    edit data, contoh ubah dari member->guest     | data berhasil edit, terdapat notif, detail berubah krn edit dari member->guest, tidak ada sisa kuota |
+|:------------------------------------------------------------:|:-----------------------------------------------------:|:------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
+| <img src="screenshots/berhasiltambahmember.png" width="250"> | <img src="screenshots/detailmauedit.png" width="250"> | <img src="screenshots/editdata.png" width="250"> |                         <img src="screenshots/berhasiledit.png" width="250">                         |  
+
+
 7. Hapus Pengunjung
    - Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
    - Anda akan masuk ke form Detail Pengunjung.
