@@ -140,6 +140,11 @@ Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelu
 
 - Jika kuota habis, lakukan edit, dan simpan, kemudian ulangi ke langkah checkin
 
+| validasi tidak dapat lakukan checkin pada sesi yang sama di satu hari | 
+|:---------------------------------------------------------------------:|
+|            <img src="screenshots/valcek.png" width="250">             |
+
+
 4. Untuk Lihat Detail Data Check-in Pada Hari Itu.
    - Pada halaman checkin, Pilih tanggal yang diinginkan.
    - Pilih dan klik card yang ingin dilihat.
