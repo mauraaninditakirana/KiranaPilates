@@ -145,6 +145,17 @@ Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelu
    - Pilih dan klik card yang ingin dilihat.
    -  Akan tampil data pengunjung yang checkin pada sesi tersebut sesuai dengan tanggal yang diatur. 
 
+|                    pilih checkin                     |           Sesuai tanggal yang diinginkan            | klik yang mau dilihat, muncul data sesuai tanggal |
+|:----------------------------------------------------:|:---------------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/setelahlogin.png" width="250"> | <img src="screenshots/tambahcheck.png" width="250"> |  <img src="screenshots/conpagi.png" width="250">  |
+
+- COntoh jika tanggal dipilih
+
+|                    pilih checkin                     |         Sesuai tanggal yang diinginkan          | klik yang mau dilihat, muncul data sesuai tanggal |
+|:----------------------------------------------------:|:-----------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/setelahlogin.png" width="250"> | <img src="screenshots/tangpil.png" width="250"> |  <img src="screenshots/piltang.png" width="250">  |
+
+
 ## Technical Documentation
 ### Entity Relationship Diagram (ERD)
 
