@@ -84,7 +84,7 @@ Jika memilih card 1
      - Catatan: terdapat perbedaan pada detail, jika member maka ada sisa kuota, dan guest tidak ada.
 
 
-|   pada halaman ini, pilih dan klik pengunjung    |             masuk ke detail, pilih edit             |       edit data, ubah dari member->guest       |berhasil, terdapat notif, detail berubah tidak ada sisa kuota|
+|      halaman ini, pilih dan klik pengunjung      |             masuk ke detail, pilih edit             |       edit data, ubah dari member->guest       |berhasil, terdapat notif, detail berubah tidak ada sisa kuota|
 |:------------------------------------------------:|:---------------------------------------------------:|:----------------------------------------------:|:-----------------------------------------------------------:|
 |<img src="screenshots/bisamember.png" width="250">|<img src="screenshots/detailmauedit.png" width="250">|<img src="screenshots/editdata.png" width="250">|    <img src="screenshots/berhasiledit.png" width="250">     |  
 
@@ -108,6 +108,11 @@ Jika memilih card 2
 2. klik salah satu sesi yang ingin diedit (jam/instruktur).
    - Jika tidak diisi maka muncul notifikasi "Jam dan Instruktur wajib diisi".
 3. Klik simpan untuk menyimpan perubahan, dan akan tampil notifikasi "Sesi berhasil diupdate".
+
+|                     pilih sesi                     |       pilih yang mau diedit,klik pensil       |         form edit, validasi wajib diisi          |           berhasil edit, terdapat notif            |
+|:--------------------------------------------------:|:---------------------------------------------:|:------------------------------------------------:|:--------------------------------------------------:|
+|<img src="screenshots/setelahlogin.png" width="250">|<img src="screenshots/sesiaja.png" width="250">| <img src="screenshots/wajibisi.png" width="250"> | <img src="screenshots/sesiupdate.png" width="250"> |  
+
    
 ### 5. Manajemen Checkin
 Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelum masuk ruangan pilates).
@@ -120,6 +125,21 @@ Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelu
    - Pilih Sesi saat itu juga (karena kita input checkin sebelum memasuki ruangan jadi sesi sudah pasti).
    - Klik tombol "Check-in Sekarang".
    - Akan kembali ke halaman Checkin disertai notifikasi "checkin berhasil", dan dapat di check pada detail sesi sesuai tanggal hari ini.
+
+|                    pilih checkin                     |                      Klik +                       |        form checkin,dropdown&fitur search        |           berhasil edit, terdapat notif           |
+|:----------------------------------------------------:|:-------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/setelahlogin.png" width="250"> |<img src="screenshots/tambahcheck.png" width="250">| <img src="screenshots/maucheck.png" width="250"> | <img src="screenshots/bisacheck.png" width="250"> |  
+
+|               cek total kunjungan +1               |
+|:--------------------------------------------------:|
+| <img src="screenshots/kunjungan+.png" width="250"> |
+
+|           checkin member,kuota habis           |                 Klik checkin, ya edit                 |   masuk ke edit,pilih +kuota/edit ke guest    |     berhasil edit(tambah kuota), notif berhasil     |
+|:----------------------------------------------:|:-----------------------------------------------------:|:---------------------------------------------:|:---------------------------------------------------:|
+| <img src="screenshots/kuota0.png" width="250"> | <img src="screenshots/validasihabis.png" width="250"> | <img src="screenshots/edit+.png" width="250"> | <img src="screenshots/kuotatambah.png" width="250"> |  
+
+- Jika kuota habis, lakukan edit, dan simpan, kemudian ulangi ke langkah checkin
+
 4. Untuk Lihat Detail Data Check-in Pada Hari Itu.
    - Pada halaman checkin, Pilih tanggal yang diinginkan.
    - Pilih dan klik card yang ingin dilihat.
