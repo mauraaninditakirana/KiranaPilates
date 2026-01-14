@@ -21,11 +21,12 @@ Login :
 1. Buka aplikasi.
 2. Login dengan username dan password.
 3. Klik tombol Login untuk masuk ke dashboard.
-   - Catatan: Jika username/password salah, akan muncul pesan peringatan.
-   - Jika login berhasil, terdapat notifikasi "login berhasil".
-|                     Sebelum Login                      |                           Setelah Login                           |
-|:------------------------------------------------------:|:-----------------------------------------------------------------:|
-| <img src="screenshots/kiranalogin.png" width="250"> | <img src="screenshots/setelahlogin.png" width="250"> |
+    * Catatan: Jika username/password salah, akan muncul pesan peringatan.
+      * Jika login berhasil, terdapat notifikasi "Login Berhasil" dan akan diarahkan ke dashboard.
+* 
+|                     Sebelum Login                     |                     Setelah Login                      |
+|:-----------------------------------------------------:|:------------------------------------------------------:|
+| <img src="screenshots/kiranalogin.png" width="250">   | <img src="screenshots/setelahlogin.png" width="250">   |
 
 
 Logout : 
