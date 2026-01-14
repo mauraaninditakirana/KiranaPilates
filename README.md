@@ -66,9 +66,9 @@ Jika memilih card 1
         - Validasi: Jika ada kolom yang kosong, sistem akan menolak dan meminta Anda melengkapinya.
    - Jika berhasil, akan muncul notifikasi "Data Berhasil Disimpan" dan Anda kembali ke daftar pengunjung.
 
-|       pada halaman ini (sebelum tambah pengunjung)       | setelah klik button tambah, masuk form tambah data guest | setelah tambah data tipe guest, dengan notifikasi berhasil  |           mencoba tambah data tipe member            |               mencoba tambah data tipe member                |
-|:--------------------------------------------------------:|:--------------------------------------------------------:|:-----------------------------------------------------------:|:----------------------------------------------------:|:------------------------------------------------------------:|
-| <img src="screenshots/daftarpengunjung.png" width="250"> |   <img src="screenshots/tambahguest.png" width="250">    | <img src="screenshots/berhasiltambahguest.png" width="250"> | <img src="screenshots/tambahmember.png" width="250"> | <img src="screenshots/berhasiltambahmember.png" width="250"> |
+|            daftar (sebelum tambah pengunjung)            |    setelah klik +, masuk form, tambah data guest    |  setelah tambah tipe guest, notifikasi berhasil   |           mencoba tambah data tipe member            |          mencoba tambah data tipe member           |
+|:--------------------------------------------------------:|:---------------------------------------------------:|:-------------------------------------------------:|:----------------------------------------------------:|:--------------------------------------------------:|
+| <img src="screenshots/daftarpengunjung.png" width="250"> | <img src="screenshots/tambahguest.png" width="250"> | <img src="screenshots/bisaguest.png" width="250"> | <img src="screenshots/tambahmember.png" width="250"> | <img src="screenshots/bisamember.png" width="250"> |
 
 |        cek validasi jika tidak diisi nama         |       cek validasi jika tidak diisi nomor hp       |
 |:-------------------------------------------------:|:--------------------------------------------------:|
@@ -81,12 +81,12 @@ Jika memilih card 1
    - Edit data yang diinginkan (nama/nomor hp/tipe pengunjung).
    - Tekan tombol "Simpan".
    - Kemudian akan kembali ke halaman Detail Pengunjung disertai notifikasi "data berhasil diupdate".
-   - Catatan: terdapat perbedaan pada detail, jika member maka ada sisa kuota, dan guest tidak ada.
+     - Catatan: terdapat perbedaan pada detail, jika member maka ada sisa kuota, dan guest tidak ada.
 
 
-|         pada halaman ini, pilih dan klik pengunjung          |              masuk ke detail, pilih edit              |    edit data, contoh ubah dari member->guest     | data berhasil edit, terdapat notif, detail berubah krn edit dari member->guest, tidak ada sisa kuota |
-|:------------------------------------------------------------:|:-----------------------------------------------------:|:------------------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-| <img src="screenshots/berhasiltambahmember.png" width="250"> | <img src="screenshots/detailmauedit.png" width="250"> | <img src="screenshots/editdata.png" width="250"> |                         <img src="screenshots/berhasiledit.png" width="250">                         |  
+|   pada halaman ini, pilih dan klik pengunjung    |              masuk ke detail, pilih edit              |    edit data, contoh ubah dari member->guest     | data berhasil edit, terdapat notif, detail berubah tidak ada sisa kuota |
+|:------------------------------------------------:|:-----------------------------------------------------:|:------------------------------------------------:|:-----------------------------------------------------------------------:|
+|<img src="screenshots/bisamember.png" width="250">| <img src="screenshots/detailmauedit.png" width="250"> | <img src="screenshots/editdata.png" width="250"> |          <img src="screenshots/berhasiledit.png" width="250">           |  
 
 
 7. Hapus Pengunjung
@@ -95,6 +95,12 @@ Jika memilih card 1
    - Klik tombol "Hapus".
         - Validasi: Apakah yakin akan menghapus pengunjung, jika ya, maka terhapus, dan jika tidak maka batal.
    - Pilih "Ya" untuk menghapus pengunjung, dan akan tampil notif "Data berhasil dihapus".
+
+
+|   pada halaman ini, pilih dan klik pengunjung    |            masuk ke detail, pilih hapus            |        hapus data, validasi pilih "ya"        |           berhasil hapus, terdapat notif           |
+|:------------------------------------------------:|:--------------------------------------------------:|:---------------------------------------------:|:--------------------------------------------------:|
+|<img src="screenshots/bisamember.png" width="250">|<img src="screenshots/datamauhapus.png" width="250">|<img src="screenshots/yahapus.png" width="250">|<img src="screenshots/dataterhapus.png" width="250">|  
+
 
 ### 4. Manajemen Sesi
 Jika memilih card 2
