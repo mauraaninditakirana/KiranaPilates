@@ -2,8 +2,17 @@
 Aplikasi Android berbasis Kotlin yang digunakan untuk membantu staf admin Kirana Pilates dalam mengelola data pengunjung, keanggotaan (Member & Guest), sesi latihan, serta pencatatan check-in harian.
 Aplikasi ini menggantikan proses manual (buku catatan / spreadsheet) menjadi sistem yang lebih baik dan aman.
 
-Backend Project dapat diakses pada [link berikut] (https://github.com/mauraaninditakirana/KiranaPilates/tree/Backend)
-##
+##Repository Structure
+
+```text
+KiranaPilates/
+├── backend/           <- Source code API Branch (PHP Native)
+└── master/            <- Main Branch (Android)
+    ├── app/           <- Source code Aplikasi Android (Kotlin)
+    └── gradle/        <- Konfigurasi Gradle
+```
+
+Backend Project dapat diakses pada [link berikut](https://github.com/mauraaninditakirana/KiranaPilates/tree/Backend)
 
 ## Fitur Aplikasi
 - Login & Logout Admin  
@@ -235,9 +244,9 @@ Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelu
    - Password: admin123
   
 ## 👤 Author
-Nama: Maura Anindita Kirana
-NIM: 20230140090
-Teknologi Informasi Universitas Muhammadiyah Yogyakarta
+* Nama: Maura Anindita Kirana 
+* NIM: 20230140090 
+* Teknologi Informasi Universitas Muhammadiyah Yogyakarta
 
 
 
