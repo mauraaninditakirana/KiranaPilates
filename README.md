@@ -23,7 +23,7 @@ Login :
 3. Klik tombol Login untuk masuk ke dashboard.
     * Catatan: Jika username/password salah, akan muncul pesan peringatan.
       * Jika login berhasil, terdapat notifikasi "Login Berhasil" dan akan diarahkan ke dashboard.
-* 
+      
 |                     Sebelum Login                     |                     Setelah Login                      |
 |:-----------------------------------------------------:|:------------------------------------------------------:|
 | <img src="screenshots/kiranalogin.png" width="250">   | <img src="screenshots/setelahlogin.png" width="250">   |
@@ -31,6 +31,12 @@ Login :
 
 Logout : 
 1. Klik halaman logout pada dashboard.
+ * Jika berhasil, muncul notifikasi "logout berhasil"
+
+   |     Setelah klik button logout pada dashboard         | 
+   |:-----------------------------------------------------:|
+   |   <img src="screenshots/logout.png" width="250">      |
+
 
 ### 2. Dashboard Utama
 1. Pilih menu Registrasi Pengunjung untuk mengelola data member.
