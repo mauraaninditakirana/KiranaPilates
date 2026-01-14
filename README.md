@@ -50,6 +50,11 @@ Jika memilih card 1
    - Pilih menu Daftar Pengunjung.
    - Akan muncul daftar nama pengunjung beserta statusnya (Member atau Guest).
    - Gunakan Kolom Pencarian di bagian atas untuk mencari nama tertentu dengan cepat.
+
+|                    pada dashboard                    |            setelah klik Registrasi pengunjung            |
+|:----------------------------------------------------:|:--------------------------------------------------------:|
+| <img src="screenshots/setelahlogin.png" width="250"> | <img src="screenshots/daftarpengunjung.png" width="250"> |
+
 3. Menambah Pengunjung Baru
    - Di halaman Daftar Pengunjung, tekan tombol Tambah (+) di pojok kanan bawah.
    - Anda akan masuk ke form Tambah Pengunjung.
@@ -60,6 +65,15 @@ Jika memilih card 1
    - Tekan tombol "Simpan".
         - Validasi: Jika ada kolom yang kosong, sistem akan menolak dan meminta Anda melengkapinya.
    - Jika berhasil, akan muncul notifikasi "Data Berhasil Disimpan" dan Anda kembali ke daftar pengunjung.
+
+|       pada halaman ini (sebelum tambah pengunjung)       | setelah klik button tambah, masuk form tambah data guest | setelah tambah data tipe guest, dengan notifikasi berhasil  |           mencoba tambah data tipe member            |               mencoba tambah data tipe member                |
+|:--------------------------------------------------------:|:--------------------------------------------------------:|:-----------------------------------------------------------:|:----------------------------------------------------:|:------------------------------------------------------------:|
+| <img src="screenshots/daftarpengunjung.png" width="250"> |   <img src="screenshots/tambahguest.png" width="250">    | <img src="screenshots/berhasiltambahguest.png" width="250"> | <img src="screenshots/tambahmember.png" width="250"> | <img src="screenshots/berhasiltambahmember.png" width="250"> |
+
+|        cek validasi jika tidak diisi nama         |       cek validasi jika tidak diisi nomor hp       |
+|:-------------------------------------------------:|:--------------------------------------------------:|
+| <img src="screenshots/tanpanama.png" width="250"> | <img src="screenshots/tanpanomor.png" width="250"> |
+
 5. Edit Pengunjung
    - Di halaman Daftar Pengunjung, pilih atau klik salah satu card pengunjung yang ingin di edit.
    - Anda akan masuk ke halaman Detail Pengunjung.
