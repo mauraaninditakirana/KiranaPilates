@@ -49,7 +49,22 @@ class EditPengunjungViewModel(
 
     // 4. Fungsi untuk mengirim perubahan data ke server dengan metode PUT
     // Di EditPengunjungViewModel.kt
-    fun updatePengunjung(token: String, onSuccess: () -> Unit) {
+    fun updatePengunjung(token: String, onSuccess: () -> Unit, onError: (String) -> Unit) {
+
+        if (namaInput.isEmpty()) {
+            onError("Nama tidak boleh kosong")
+            return
+        }
+        if (!namaInput.first().isLetterOrDigit()) {
+            onError("Nama tidak boleh diawali simbol/tanda baca")
+            return
+        }
+
+        if (noHpInput.length < 10 || noHpInput.length > 15) {
+            onError("Nomor HP harus 10 - 15 digit")
+            return
+        }
+
         viewModelScope.launch {
             try {
                 // Bungkus semua data ke dalam Map
@@ -65,8 +80,12 @@ class EditPengunjungViewModel(
 
                 if (response.status == "success") {
                     onSuccess() // Navigasi balik ke Detail jika berhasil
+                }else {
+                    // Jika server menolak, tampilkan errornya
+                    onError(response.message ?: "Gagal Update")
                 }
             } catch (e: Exception) {
+                onError("Terjadi kesalahan jaringan")
                 e.printStackTrace()
             }
         }

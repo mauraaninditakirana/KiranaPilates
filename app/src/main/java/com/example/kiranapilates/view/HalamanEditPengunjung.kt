@@ -152,20 +152,21 @@ fun HalamanEditPengunjung(
                 // --- TOMBOL SIMPAN (Pink Penuh) ---
                 Button(
                     onClick = {
-
-                        println("DEBUG TOKEN DI EDIT: '$token'")
-
                         if (token.isNotEmpty()) {
-                            // Panggil viewModel update
-                            // Parameter kedua adalah callback (apa yang dilakukan setelah sukses)
-                            viewModel.updatePengunjung(token) {
-
-                                // 1. Tampilkan Pesan Sukses
-                                Toast.makeText(context, "Data berhasil diupdate!", Toast.LENGTH_SHORT).show()
-
-                                // 2. Baru kembali ke halaman sebelumnya
-                                onBack()
-                            }
+                            // Panggil fungsi update dengan format baru
+                            viewModel.updatePengunjung(
+                                token = token,
+                                onSuccess = {
+                                    // Jika Sukses
+                                    Toast.makeText(context, "Data berhasil diupdate!", Toast.LENGTH_SHORT).show()
+                                    onBack()
+                                },
+                                onError = { pesanError ->
+                                    // Jika Gagal Validasi (Nama simbol, HP salah, dll)
+                                    // Tampilkan pesan error dari ViewModel ke Toast
+                                    Toast.makeText(context, pesanError, Toast.LENGTH_SHORT).show()
+                                }
+                            )
                         } else {
                             Toast.makeText(context, "Token error!", Toast.LENGTH_SHORT).show()
                         }
