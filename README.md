@@ -37,6 +37,12 @@ Login :
 |:-----------------------------------------------------:|:------------------------------------------------------:|
 | <img src="screenshots/kiranalogin.png" width="250">   | <img src="screenshots/setelahlogin.png" width="250">   |
 
+- Cek validasi login
+
+|               jika koneksi terputus               |           jika email/password salah            |
+|:-------------------------------------------------:|:----------------------------------------------:|
+| <img src="screenshots/putuscont.png" width="250"> | <img src="screenshots/passlh.png" width="250"> |
+
 
 Logout : 
 1. Klik halaman logout pada dashboard.

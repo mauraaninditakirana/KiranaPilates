@@ -39,10 +39,16 @@ class LoginViewModel(private val authRepository: AuthRepository) : ViewModel() {
                 if (response.status == "success" && response.data != null) {
                     loginUiState = LoginUiState.Success(response.data.token)
                 } else {
-                    loginUiState = LoginUiState.Error(response.message ?: "Login Gagal")
+                    loginUiState = LoginUiState.Error("Email atau password salah, silahkan coba kembali")
                 }
             } catch (e: Exception) {
-                loginUiState = LoginUiState.Error("Terjadi kesalahan jaringan: ${e.message}")
+                val errorMsg = e.message ?: ""
+
+                if (errorMsg.contains("401") || errorMsg.contains("400")) {
+                    loginUiState = LoginUiState.Error("Email atau password salah, silahkan coba kembali")
+                } else {
+                    loginUiState = LoginUiState.Error("Periksa koneksi internet Anda.")
+                }
             }
         }
     }
