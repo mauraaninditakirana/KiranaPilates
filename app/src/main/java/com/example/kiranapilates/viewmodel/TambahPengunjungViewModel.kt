@@ -15,20 +15,33 @@ class TambahPengunjungViewModel(private val pengunjungRepository: PengunjungRepo
 
     fun simpanPengunjung(onSuccess: () -> Unit, onError: (String) -> Unit) {
 
-        if (namaInput.isEmpty()) {
-            onError("Nama tidak boleh kosong")
-            return
-        }
         // isLetterOrDigit() mengecek apakah karakter itu Huruf atau Angka.
         // Tanda '!' berarti "JIKA BUKAN".
-        if (!namaInput.first().isLetterOrDigit()) {
-            onError("Nama tidak boleh diawali simbol/tanda baca")
+        if (namaInput.isEmpty() || !namaInput.first().isLetterOrDigit()) {
+            onError("Nama tidak boleh kosong atau diawali simbol")
             return
         }
 
         // 2. Cek No HP: Harus angka, minimal 10, maksimal 15
         if (noHpInput.length < 10 || noHpInput.length > 15) {
             onError("Nomor HP harus 10 - 15 digit")
+            return
+        }
+        // 2. Cek Awalan (Wajib 08)
+        if (!noHpInput.startsWith("08")) {
+            onError("Nomor HP harus diawali '08'")
+            return
+        }
+
+        // 3. Cek Pola Berulang (Anti 080000000, 089999999, 081111111)
+        // Ambil angka setelah "08"
+        val sisaAngka = noHpInput.substring(2)
+
+        // Logika: toSet() akan mengelompokkan karakter unik.
+        // Jika sisa angka "111111", maka uniknya cuma "1" (size = 1). Ini yang kita tolak.
+        // Jika sisa angka "123456", maka uniknya ada 6 (size > 1). Ini lolos.
+        if (sisaAngka.toSet().size == 1) {
+            onError("Nomor HP tidak valid (Angka tidak boleh berulang semua)")
             return
         }
 
