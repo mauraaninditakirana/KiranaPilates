@@ -234,7 +234,7 @@ Fitur ini digunakan saat pengunjung datang untuk mengikuti kelas pilates (sebelu
 ### Langkah-langkah
 1.  **Clone Repository**
     ```bash
-    git clone [https://github.com/mauraaninditakirana/KiranaPilates.git]
+    git clone [https://github.com/mauraaninditakirana/PAM2025_090.git]
     ```
 2.  Setup Backend
     - Copy folder backend ke dalam htdocs di XAMPP atau di www jika menggunakan Laragon.
